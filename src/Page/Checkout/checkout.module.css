@@ -1,0 +1,12 @@
+#checkout {
+  margin-top: 150px;
+}
+
+.card {
+  box-shadow: 0 0px 5px rgb(0 0 0 / 0.2);
+  border-radius: 5px;
+}
+
+.bottom {
+  border-bottom: 1px solid;
+}

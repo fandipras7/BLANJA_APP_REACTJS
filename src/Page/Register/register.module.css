@@ -1,0 +1,38 @@
+h4 {
+  color: #db3022;
+}
+
+.role {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-group {
+  border: 1px solid #db3022;
+}
+
+.cs {
+  width: 123px;
+  height: 48px;
+  background-color: white;
+  color: #db3022;
+}
+
+.sl {
+  width: 123px;
+  height: 48px;
+  color: white;
+  background-color: #db3022;
+}
+
+.btnSubmit {
+  /* background-color: #db3022; */
+  height: 48px;
+  border-radius: 25px;
+  border: none;
+  color: white;
+}
+
+#reg {
+  color: #db3022;
+}

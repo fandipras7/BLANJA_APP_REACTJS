@@ -1,0 +1,136 @@
+@font-face {
+  font-family: "Metropolis";
+  src: local("Metropolis"), url("../../../font/Metropolis/Metropolis-Regular.otf") format("truetype");
+  font-weight: bold;
+}
+
+#fontku {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+nav {
+  background-color: #ffffff;
+  box-shadow: 0px 6px 40px rgba(173, 173, 173, 0.25);
+}
+
+/* body {
+  font-family: "Metropolis";
+} */
+
+.myBar {
+  position: relative;
+}
+
+.searchAndSort {
+  position: absolute;
+  left: 15%;
+  /* background-color: red; */
+}
+
+.btnSearch {
+  position: absolute;
+  right: 70px;
+  top: 15%;
+}
+
+.form_control {
+  width: 300px;
+  height: 35px;
+  border-radius: 50px;
+  margin-left: 50px;
+}
+
+.form_control:focus {
+  outline: none;
+}
+
+.btn {
+  border: 1px solid grey;
+}
+
+.btn-cart {
+  border: none;
+  text-align: center;
+}
+
+.btnLogin,
+.btnSignIn {
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 25px;
+  background-color: #db3022;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btnSignIn {
+  color: #db3022;
+  background-color: white;
+  border: 1px solid #9b9b9b;
+}
+
+.ava {
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 442px) {
+  .form_control {
+    background-color: red;
+    width: 180px !important;
+    height: 35px;
+    border-radius: 50px;
+    margin-left: 0px;
+  }
+
+  .btn-cart {
+    background-color: red;
+  }
+
+  .searchAndSort {
+    background-color: yellow;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .searchAndSort {
+    top: 1px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .searchAndSort {
+    left: 0px;
+    top: 1px;
+  }
+  .form_control {
+    width: 250px;
+    height: 35px;
+    border-radius: 50px;
+    margin-left: 0px;
+  }
+  .navbar_brand {
+    display: none !important;
+    background-color: red;
+  }
+}
+
+@media screen and (min-width: 830px) {
+  .searchAndSort {
+    left: 25%;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .form_control {
+    width: 500px;
+    height: 45px;
+    border-radius: 50px;
+    margin-left: 50px;
+  }
+
+  .searchAndSort {
+    left: 20%;
+  }
+}

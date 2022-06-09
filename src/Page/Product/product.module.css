@@ -1,0 +1,89 @@
+.color {
+  background-color: red;
+  /* width: ; */
+}
+
+.color_circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.black {
+  background-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.black p {
+  display: inline;
+}
+
+.red {
+  background-color: #db3022;
+  color: #db3022;
+}
+
+.blue {
+  background-color: #4290d8;
+  color: #4290d8;
+}
+
+.green {
+  background-color: #42d86c;
+  color: #42d86c;
+}
+
+.grey {
+  background-color: #d4d4d4;
+}
+
+.white {
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.chatBtn {
+  width: 130px;
+  background-color: #e5e5e5;
+  border: 1px solid;
+}
+
+.buyBtn {
+  width: 300px;
+  background-color: #db3022;
+  color: white;
+  border: none;
+}
+
+.title {
+  font-size: 80px;
+  font-weight: 500;
+}
+.qty {
+  font-size: 20px;
+}
+
+.barStar {
+  margin-top: -30px;
+}
+
+#satu {
+  margin-top: ;
+}
+
+.grad p {
+  display: inline;
+  font-size: 14px;
+  /* margin-top: -10px; */
+}
+
+.line {
+  background-color: #db3022;
+  width: 120px;
+  height: 5px;
+  border-radius: 2px;
+}
+
+.pr {
+  border-bottom: 1px solid;
+}

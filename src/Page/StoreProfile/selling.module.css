@@ -1,0 +1,120 @@
+main {
+  margin-top: 100px;
+}
+
+.menu {
+  background-color: white;
+}
+
+.menuHeader {
+  right: 1px;
+}
+
+.menuHeader img {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+i p {
+  display: inline;
+}
+
+bi {
+  color: white;
+}
+
+.menuOption {
+  position: absolute;
+  right: 200px;
+}
+
+.circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.store {
+  background-color: #456bf3;
+}
+
+.product {
+  background-color: #f36f45;
+}
+
+.order {
+  background-color: #f3456f;
+}
+
+.select {
+  width: 50%;
+}
+
+.form-select {
+  border: none;
+}
+
+.form-seller {
+  width: 80%;
+}
+
+.card {
+  border: none;
+}
+
+.frame-photo {
+  border: 1px dashed #d4d4d4;
+  border-radius: 4px;
+  /* background-color: #456BF3; */
+  width: 100%;
+}
+
+.main_photo {
+  /* width: 190px; */
+  height: 190px;
+  background-color: #d4d4d4;
+  text-align: center;
+  display: flex;
+}
+
+.others_photo {
+  /* width: 120px; */
+  height: 120px;
+  background-color: #d4d4d4;
+  display: flex;
+}
+
+.column-form {
+  height: 2000px;
+}
+
+#maintext {
+  color: #9b9b9b;
+  position: absolute;
+  bottom: 50px;
+}
+
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+  width: 80%;
+  background-color: black;
+}
+
+.btnUpdate {
+  width: 160px;
+  border: none;
+}
+
+@media screen and (max-width: 992px) {
+  .select {
+    width: 70%;
+  }
+}
