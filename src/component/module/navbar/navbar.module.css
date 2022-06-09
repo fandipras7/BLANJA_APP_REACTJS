@@ -77,7 +77,7 @@ nav {
 
 @media screen and (max-width: 442px) {
   .form_control {
-    background-color: red;
+    /* background-color: red; */
     width: 180px !important;
     height: 35px;
     border-radius: 50px;
@@ -88,9 +88,9 @@ nav {
     background-color: red;
   }
 
-  .searchAndSort {
+  /* .searchAndSort {
     background-color: yellow;
-  }
+  } */
 }
 
 @media screen and (max-width: 992px) {
