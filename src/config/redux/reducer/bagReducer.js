@@ -20,10 +20,22 @@ const bagReducer = (state = initialState, action) => {
       // });
       // console.log(produkDua.length);
       // const productTest = []
+      let data = [];
+      for (let item of state.product) {
+        if (item.id === action.payload.data.id) {
+          console.log(data.id);
+          state.product.qtyOrder++;
+        } else {
+          if (item.id !== action.payload.data.id) {
+            data = [...state.product, action.payload.data];
+          }
+        }
+      }
+      console.log(data);
       for (let i = 0; i < state.product.length; i++) {
-        console.log(state.product.length);
-        console.log(state.product[i].id);
-        console.log(action.payload.data.id);
+        // console.log(state.product.length);
+        // console.log(state.product[i].id);
+        // console.log(action.payload.data.id);
         if (state.product[i].id === action.payload.data.id) {
           // console.log(state.product[i].id);
           // console.log(action.payload.data.id);
