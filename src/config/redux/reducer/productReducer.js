@@ -1,5 +1,11 @@
 const initialState = {
   product: [],
+  pagination: {
+    currentPage: 0,
+    limit: 0,
+    totalData: 0,
+    totalPage: 0,
+  },
   isGeting: false,
   detailProduct: [],
 };
@@ -11,38 +17,50 @@ const productReducer = (state = initialState, action) => {
   //       isGeting: true,
   //     };
   //   } else
-  if (action.type === "GET_DATA_SUCCESS") {
-    return {
-      ...state,
-      product: [...action.payload.product],
-      isGeting: true,
-    };
-  } else if (action.type === "ADD_PRODUCT") {
-    return {
-      ...state,
-      product: [...state.product, action.payload.product],
-    };
-  } else if (action.type === "EDIT_PRODUCT") {
-    return {
-      ...state,
-      product: state.product.map((item) => {
-        return item.id === action.payload.product.id ? action.payload.product : item;
-      }),
-    };
-  } else if (action.type === "DELETE_PRODUCT") {
-    return {
-      ...state,
-      product: state.product.filter((item) => {
-        return item.id !== action.payload.id;
-      }),
-    };
-  } else if (action.type === "GET_DETAIL_SUCCESS") {
-    return {
-      ...state,
-      detailProduct: action.payload.product,
-    };
-  } else {
-    return state;
+  // if (action.type === "GET_DATA_SUCCESS") {
+  //   return {
+  //     ...state,
+  //     product: [...action.payload.product],
+  //     isGeting: true,
+  //   };
+  // } else if (action.type === "ADD_PRODUCT") {
+  //   return {
+  //     ...state,
+  //     product: [...state.product, action.payload.product],
+  //   };
+  // } else if (action.type === "EDIT_PRODUCT") {
+  //   return {
+  //     ...state,
+  //     product: state.product.map((item) => {
+  //       return item.id === action.payload.product.id ? action.payload.product : item;
+  //     }),
+  //   };
+  // } else if (action.type === "DELETE_PRODUCT") {
+  //   return {
+  //     ...state,
+  //     product: state.product.filter((item) => {
+  //       return item.id !== action.payload.id;
+  //     }),
+  //   };
+  // } else if (action.type === "GET_DETAIL_SUCCESS") {
+  //   return {
+  //     ...state,
+  //     detailProduct: action.payload.product,
+  //   };
+  // } else {
+  //   return state;
+  // }
+
+  switch (action.type) {
+    case "GET_DATA_SUCCESS":
+      return {
+        ...state,
+        product: action.payload.product,
+        pagination: action.payload.pagination,
+        isGeting:true
+      }
+      default:
+        return state
   }
 };
 

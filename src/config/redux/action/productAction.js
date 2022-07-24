@@ -1,17 +1,18 @@
 import axios from "axios";
 
-export const getData = (searchParams) => async (dispatch) => {
+export const getData = (keyword,sortBy,sort,page,limit) => async (dispatch) => {
   try {
     dispatch({ type: "GET_DATA_PENDING" });
     // const result = await axios.get('http://localhost:4000/v1/products')
     const result = await axios({
       method: "GET",
       baseURL: process.env.REACT_APP_API_BLANJA,
-      url: `/products?${searchParams}`,
+      url: `/products?${keyword&& `search=${keyword}`}${sortBy&& `&sortBy=${sortBy}`}${sort&& `&sort=${sort}`}${page&& `&page=${page}`}${limit&& `&limit=${limit}`}`,
     });
     const product = result.data.data;
+    const pagination = result.data.pagination
     console.log(product);
-    dispatch({ type: "GET_DATA_SUCCESS", payload: { product } });
+    dispatch({ type: "GET_DATA_SUCCESS", payload: { product, pagination } });
   } catch (error) {
     console.log(error);
     alert("Gagal mengambil produk");

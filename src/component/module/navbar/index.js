@@ -51,9 +51,9 @@ const Navbar = ({ className, onChange, onClickButton }) => {
           <Button className={styles.btnSearch} onClick={onClickButton} type="button" border="none" backgroundColor="white">
             <img src={searchImg} alt="" />
           </Button>
-          <Button className="btn btn-light me-2" height="40px" type="submit">
+          {/* <Button className="btn btn-light me-2" height="40px" type="submit">
             <img src={sortPic} alt="" />
-          </Button>
+          </Button> */}
         </form>
         <div className="tools"></div>
         <Button

@@ -7,60 +7,61 @@ import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../config/redux/action/productAction";
 import { getCategory } from "../../config/redux/action/categoryAction";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import lohi from '../image/lohi.png'
 // import axios from "axios";
 
 const Home = () => {
   // const { search, isSearching } = useSelector((state) => state.search);
   const { category } = useSelector((state) => state.category);
-  const [search, setSearch] = useState("");
+  const [keyword, setKeyword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams({});
+  const [isSearch, setIsSearch] = useState('')
+  const [sortby, setSortby] = useState('')
+  const [sort, setSort] = useState('')
   // const [keyword, setKeyword] = useState("");
   // const [product, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { product } = useSelector((state) => state.product);
+  const { product, pagination } = useSelector((state) => state.product);
   function moveToDetailProduct(id) {
     navigate(`/Product/${id}`);
+  }
+
+  const [page, setPage] = useState({
+    currentPage: 1,
+    limit: 2,
+    keyword,
+  });
+
+  const buttonPagination = [];
+
+  for (let i = 0; i < pagination.totalPage; i += 1) {
+    buttonPagination.push(i);
   }
   // const angka = [1, 2, 3, 4, 5];
   // setProducts();
 
   const handleSearch = () => {
-    setSearchParams({ search: search });
+    setQuery({
+      search: keyword
+    })
+    setSearchParams({ search: keyword });
+    setIsSearch(1)
   };
-  // search.length > 0 && handleSearch();
-  // async function searchData() {
-  //   console.log("apakah ini jalan");
-  //   // setSearchParams({ search: search });
 
-  //   // setKeyword(search);
-  //   // console.log(searchParams);
-  //   try {
-  //     const result = await axios({
-  //       method: "GET",
-  //       baseURL: process.env.REACT_APP_API_BLANJA /*"http://localhost:4000/v1" */,
-  //       url: `products?${searchParams}`,
-  //     });
-  //     // console.log(result.data.data[5].photo);
-  //     setProducts(result.data.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // searchData();
+  const [query, setQuery] = useState({})
 
   useEffect(() => {
     dispatch(getCategory());
-    dispatch(getData(searchParams));
+    dispatch(getData(keyword, sortby, sort, page.currentPage, page.limit));
     // searchData();
     console.log("useEffect jalan");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, [page, searchParams]);
   return (
     <div>
       {/* <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true} onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar> */}
-      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}></Navbar>
+      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" onClickButton={handleSearch} onChange={(e) => setKeyword(e.target.value)}></Navbar>
       <main>
         {/* <p>{searchParams}</p> */}
         <section className={styles.caraousell}>
@@ -84,7 +85,44 @@ const Home = () => {
           </div>
         </section>
         <section id="category">
-          <div className="container">
+          {isSearch ? <div className="container">
+            <select
+              onChange={(e) => {
+                const newSort = e.target.value;
+                setSortby(e.target.value);
+                setQuery({
+                  ...query,
+                  sortby: newSort
+                })
+                setSearchParams({
+                  ...query,
+                  sortby: newSort
+                });
+              }}
+              name="cars"
+              id="cars"
+            >
+              <option value="">SortBy</option>
+              <option value="price">Price</option>
+              <option value="name">Name</option>
+              {/* <option value="location">Sortir Berdasarkan Lokasi</option>
+            <option value="skill">Sortir Berdasarkan skill</option>
+            <option value="freelance">Sortir Berdasarkan freelence</option> */}
+            </select>
+            <button onClick={() => {
+              let newSort
+              sort ? newSort = '' : newSort = 1
+              setSort(newSort)
+              setQuery({
+                ...query,
+                sort: newSort ? 'DESC' : 'ASC'
+              })
+              setSearchParams({
+                ...query,
+                sort: newSort ? 'DESC' : 'ASC'
+              })
+            }} style={{ border: 'none' }} className="ms-2"><img src={lohi} alt="" /></button>
+          </div> : <div className="container">
             <div className="row">
               <div className="col">
                 <h4 className="text-dark">Category</h4>
@@ -96,49 +134,20 @@ const Home = () => {
                 <div className="col">
                   <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
                     <div className="card-body d-flex flex-column">
-                      <img className="img-fluid" src="" alt="" />
-                      <p className={styles.card_text}>{item.name}</p>
+                      {/* <img className="img-fluid" src="https://www.unukaltim.ac.id/wp-content/uploads/2019/12/697057-facebook-512.png" alt="" /> */}
+                      <p className={styles.text_category}>{item.name}</p>
                     </div>
                   </div>
                 </div>
               ))}
-              {/* <div className="col">
-                <div className="card bg-primary align-items-center" style={{ height: "180px" }}>
-                  <div className="card-body d-flex flex-column">
-                    <img className="img-fluid" src="./images/home/category/shorts.png" alt="" />
-                    <p className={styles.card_text}>Shorts</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card align-items-center" style={{ height: "180px", backgroundColor: "#f67b02" }}>
-                  <div className="card-body d-flex flex-column">
-                    <img className="img-fluid" src="./images/home/category/jackets.png" alt="" />
-                    <p className={styles.card_text}>Jacket</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card align-items-center" style={{ height: "180px", backgroundColor: "#e31f51" }}>
-                  <div className="card-body d-flex flex-column">
-                    <img className="img-fluid" src="./images/home/category/pants.png" alt="" />
-                    <p className={styles.card_text}>Pants</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card align-items-center" style={{ height: "180px", backgroundColor: "#57cd9e" }}>
-                  <div className="card-body d-flex flex-column">
-                    <img className="img-fluid" src="./images/home/category/shoes.png" alt="" />
-                    <p className={styles.card_text}>Shoes</p>
-                  </div>
-                </div>
-              </div> */}
               <Button className={styles.btnCategory} width="52px" height="52px" borderRadius="50%" backgroundColor="white">
                 <img src="./images/home/category/rigth.png" alt="" />
               </Button>
             </div>
           </div>
+
+          }
+
         </section>
         <section id="new-product">
           <div className="container mt-5">
@@ -181,7 +190,49 @@ const Home = () => {
             </div>
           </div>
         </section>
+
       </main>
+      <nav className="mt-5">
+        <ul className="pagination justify-content-center">
+          <li className={`page-item ${page.currentPage <= 1 && "disabled"}`}>
+            <button
+              className="page-link"
+              type="button"
+              onClick={() => {
+                // const newPage = {
+                //   currentPage: page.currentPage - 1,
+                //   limit: page.limit
+                // }
+                setPage((current) => ({ ...current, currentPage: current.currentPage - 1 }));
+              }}
+            >
+              Previous
+            </button>
+          </li>
+          {buttonPagination.map((item, index) => (
+            <li className={`page-item ${index + 1 === page.currentPage && "active"}`} key={Math.random(100)}>
+              <button onClick={() => index + 1} type="button" className="page-link">
+                {index + 1}
+              </button>
+            </li>
+          ))}
+          <li className={`page-item ${page.currentPage === pagination.totalPage && "disabled"}`}>
+            <button
+              className="page-link"
+              type="button"
+              onClick={() => {
+                // const newPage = {
+                //   currentPage: page.currentPage + 1,
+                //   limit: page.limit
+                // }
+                setPage((current) => ({ ...current, currentPage: current.currentPage + 1 }));
+              }}
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

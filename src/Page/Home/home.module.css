@@ -44,6 +44,13 @@
   margin-top: 17px;
 } */
 
+.text_category {
+  text-align: center;
+  align-items: center;
+  margin-top: 50px;
+  color: white;
+}
+
 .card_text {
   position: absolute;
   top: 40%;
