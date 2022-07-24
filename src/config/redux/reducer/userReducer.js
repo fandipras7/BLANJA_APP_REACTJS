@@ -3,6 +3,7 @@ const initialState = {
     name: "",
     email: "",
   },
+  mycart: [],
   isLoading: false,
   isLogin: false,
 };
@@ -37,11 +38,16 @@ const userReducer = (state = initialState, action) => {
         isLoading: false,
         isLogin: true,
       };
-      case "EDIT_PROFILE":
-        return {
-          ...state,
-          user : {...state.user, ...action.payload.profile}
-        }
+    case "EDIT_PROFILE":
+      return {
+        ...state,
+        user: { ...state.user, ...action.payload.profile },
+      };
+    case "GET_MYCART":
+      return {
+        ...state,
+        mycart: action.payload.cart,
+      };
     default:
       return state;
   }

@@ -9,18 +9,19 @@ import { useNavigate } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom'
 
 const Bag = () => {
-  const { product } = useSelector((state) => state.bag);
+  // const { product } = useSelector((state) => state.bag);
+  const { mycart } = useSelector((state) => state.user);
   const navigate = useNavigate();
   // let [count, setCount] = useState(1);
   let [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   // console.log(product);
   // const navigate = useNavigate()
-  useEffect(() => {
-    dispatch(getProductBag());
-    console.log("apakah ini jalan");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product]);
+  // useEffect(() => {
+  //   dispatch(getProductBag());
+  //   console.log("apakah ini jalan");
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [product]);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
@@ -50,8 +51,8 @@ const Bag = () => {
                 </div>
               </div>
 
-              {product &&
-                product.map((item) => (
+              {mycart &&
+                mycart.map((item) => (
                   <div className="card mb-3 px-4">
                     <div className="table-responsive-sm">
                       <table className="table">
@@ -74,10 +75,10 @@ const Bag = () => {
                           </td>
                           <td className="align-middle text-center">
                             <Button
-                              onClick={() => {
-                                item.qtyOrder <= 1 ? dispatch(deleteProdct(item.id)) : dispatch(minQty(item.id, item.qtyOrder - 1));
-                                setTotalPrice(totalPrice + item.qtyOrder * item.price);
-                              }}
+                              // onClick={() => {
+                              //   item.qtyOrder <= 1 ? dispatch(deleteProdct(item.id)) : dispatch(minQty(item.id, item.qtyOrder - 1));
+                              //   setTotalPrice(totalPrice + item.qtyOrder * item.price);
+                              // }}
                               backgroundColor="#d4d4d4"
                               width="36px"
                               height="36px"
@@ -86,12 +87,12 @@ const Bag = () => {
                               <img className="mb-2" src="./images/bag/min.png" alt="btn" />
                             </Button>
                           </td>
-                          <td className={"align-middle text-center " + styles.one}>{item.qtyOrder}</td>
+                          <td className={"align-middle text-center " + styles.one}>{item.qty}</td>
                           <td className="align-middle text-center">
                             <Button
-                              onClick={() => {
-                                dispatch(addPlus(item.id, item.qtyOrder + 1));
-                              }}
+                              // onClick={() => {
+                              //   dispatch(addPlus(item.id, item.qtyOrder + 1));
+                              // }}
                               backgroundColor="white"
                               width="36px"
                               height="36px"
@@ -100,7 +101,7 @@ const Bag = () => {
                               <img className="mb-2" src="./images/bag/shape.png" alt="btn" />
                             </Button>
                           </td>
-                          <td className={"align-middle fw-bold"}>{item.price * item.qtyOrder}</td>
+                          <td className={"align-middle fw-bold"}>{item.price * item.qty}</td>
                         </tbody>
                       </table>
                     </div>
