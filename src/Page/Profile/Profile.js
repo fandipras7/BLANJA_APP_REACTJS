@@ -1,10 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../component/module/navbar";
 import styles from "./profile.module.css";
 import Button from "../../component/base/Button";
 import Card from "../../component/base/card";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfile } from "../../config/redux/action/userAction";
 
 const Profile = () => {
+  const { user } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  console.log('ini punya user');
+  console.log(user);
+
+  const [dataUser, setDataUser] = useState({
+    name: user.name,
+    email: user.email,
+    phonenumber: user.phonenumber,
+    birthdate: user.birthdate,
+    gender: user.gender
+
+  })
+
+  const onHandleChange = (e) => {
+    setDataUser({
+      ...dataUser,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const [show, setShow] = useState('')
+
+  const onClickEdit = () => {
+    const inputs = document.getElementsByClassName('form-control')
+    const checks = document.getElementsByClassName('form-check-input')
+    // inputs.disabled = false
+    // console.log(inputs);
+    const allFrom = [...inputs]
+    const allCheck = [...checks]
+    allFrom.map((item) => {
+      return item.disabled = false
+    })
+    allCheck.map((item) => {
+      return item.disabled = false
+    })
+    setShow(1)
+  }
+
+  const onSave = () => {
+    dispatch(updateProfile(dataUser))
+    const inputs = document.getElementsByClassName('form-control')
+    const checks = document.getElementsByClassName('form-check-input')
+    // inputs.disabled = false
+    // console.log(inputs);
+    const allFrom = [...inputs]
+    const allCheck = [...checks]
+    allFrom.map((item) => {
+      return item.disabled = true
+    })
+    allCheck.map((item) => {
+      return item.disabled = true
+    })
+    setDataUser({
+      ...dataUser
+    })
+    setShow('')
+  }
+
+  const onCancelEdit = () => {
+    const inputs = document.getElementsByClassName('form-control')
+    const checks = document.getElementsByClassName('form-check-input')
+    // inputs.disabled = false
+    // console.log(inputs);
+    const allFrom = [...inputs]
+    const allCheck = [...checks]
+    allFrom.map((item) => {
+      return item.disabled = true
+    })
+    allCheck.map((item) => {
+      return item.disabled = true
+    })
+    setDataUser({
+      ...dataUser
+    })
+    setShow('')
+  }
+
+  console.log(dataUser);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
@@ -17,8 +98,8 @@ const Profile = () => {
                   <img src="./images/profile/ava1.png" className="img-fluid" alt="" />
                 </div>
                 <div>
-                  <p className="ms-4">Johanes Mikael</p>
-                  <span>Edit Profile</span>
+                  <p className="ms-4">{user.name}</p>
+                  <span className="ms-2" onClick={onClickEdit}>Edit Profile</span>
                 </div>
               </div>
               <div className={styles.menu + " mt-5"}>
@@ -56,7 +137,7 @@ const Profile = () => {
                             Name
                           </label>
                           <div className="col-sm-8">
-                            <input type="text" className="form-control" value="Johanes Mikael" />
+                            <input type="text" className="form-control" name="name" onChange={(e) => { onHandleChange(e) }} value={dataUser.name} disabled />
                           </div>
                         </div>
                         <div className="mb-3 mt-1 row">
@@ -64,7 +145,7 @@ const Profile = () => {
                             Email
                           </label>
                           <div className="col-sm-8">
-                            <input type="text" className="form-control" value="Johanes@gmail.com" />
+                            <input type="text" className="form-control" name="email" onChange={(e) => { onHandleChange(e) }} value={dataUser.email} disabled />
                           </div>
                         </div>
                         <div className="mb-3 mt-1 row">
@@ -72,7 +153,7 @@ const Profile = () => {
                             Phone Number
                           </label>
                           <div className="col-sm-8">
-                            <input type="text" className="form-control" value="0818098131" />
+                            <input type="text" className="form-control" name="phonenumber" onChange={(e) => { onHandleChange(e) }} value={dataUser.phonenumber} disabled />
                           </div>
                         </div>
                         <div class="mb-4 row">
@@ -80,11 +161,11 @@ const Profile = () => {
                             Gender
                           </label>
                           <div className="col-sm-8 my-auto">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                            <input className="form-check-input" value="Laki-Laki" type="radio" onChange={(e) => { onHandleChange(e) }} name="gender" id="flexRadioDefault1" disabled />
                             <label className="form-check-label text-secondary" for="flexRadioDefault1">
                               Laki-laki
                             </label>
-                            <input className="form-check-input ms-3" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                            <input className="form-check-input ms-3" value="Perempuan" type="radio" onChange={(e) => { onHandleChange(e) }} name="gender" id="flexRadioDefault1" disabled />
                             <label className="form-check-label text-secondary" for="flexRadioDefault1">
                               Perempuan
                             </label>
@@ -94,7 +175,10 @@ const Profile = () => {
                           <label for="inputPassword" className="col-sm-3 col-form-label text-start text-form">
                             Date of birth
                           </label>
-                          <div className="col-sm-2">
+                          <div className="col-sm-6">
+                            <input type="text" className="form-control" value={dataUser.birthdate} />
+                          </div>
+                          {/* <div className="col-sm-2">
                             <select className="form-select" aria-label="Default select example">
                               <option selected>1</option>
                               <option value="1">1</option>
@@ -117,13 +201,16 @@ const Profile = () => {
                               <option value="2">1992</option>
                               <option value="3">1993</option>
                             </select>
-                          </div>
+                          </div> */}
                         </div>
                         <div className="mb-3 row">
-                          <div className="col-sm-6 text-start">
-                            <Button className="p-1 me-4" borderRadius="25px" backgroundColor="#DB3022" width="100px" color="white">
+                          <div className="col-sm-6 d-flex text-start">
+                            <Button onClick={onSave} className="p-1 me-4" borderRadius="25px" backgroundColor="#DB3022" width="100px" color="white">
                               Save
                             </Button>
+                            {show && <><Button onClick={onCancelEdit} className="p-1 me-4" borderRadius="25px" backgroundColor="white" width="100px" color="black">
+                              Cancel
+                            </Button></>}
                           </div>
                         </div>
                       </div>

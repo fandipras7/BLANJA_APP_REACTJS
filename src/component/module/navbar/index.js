@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { NavLink, useNavigate, } from "react-router-dom";
+import { NavLink, Link, useNavigate, } from "react-router-dom";
 import styles from "./navbar.module.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
@@ -7,7 +7,7 @@ import sortPic from "./img/sort.png";
 import cartPic from "./img/cart.png";
 import logo from "./img/logoBlanja.png";
 import searchImg from "./img/search.png";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { searchProduct } from "../../../config/redux/action/searchAction";
 
 const Navbar = ({ className, onChange, onClickButton }) => {
@@ -17,6 +17,15 @@ const Navbar = ({ className, onChange, onClickButton }) => {
   // const dispatch = useDispatch();
   const { isLogin } = useSelector((state) => state.user);
   const [tampilkan, setTampilkan] = useState("");
+  const role = localStorage.getItem('roleId')
+ 
+
+  const handleLogout = ()=>{
+    localStorage.removeItem('token')
+    localStorage.removeItem('roleId')
+    localStorage.removeItem('refreshToken')
+    navigate('/login')
+  }
   // console.log(search);
   // const onClickButton = () => {
   //   if (search.length > 0) {
@@ -85,11 +94,18 @@ const Navbar = ({ className, onChange, onClickButton }) => {
                 </NavLink>
               </li>
               <li className="nav-item ms-2 mt-2">
-                <NavLink to="/StoreProfile/myproduct">
+                {/* <NavLink to="/StoreProfile/myproduct">
+                  
+                </NavLink> */}
+                <div className={styles.dropdown}>
                   <Button border="none" backgroundColor="white" className="btn btn-light">
                     <img className={styles.ava} src="./images/navbar/avatar.png" alt="" />
                   </Button>
-                </NavLink>
+                  <div className={styles.dropdown_content}>
+                    <Link to={role === 'customer' ? "/profile" : "/StoreProfile/myproduct"}>Profile </Link>
+                    <p onClick={handleLogout}>Logout</p>
+                  </div>
+                </div>
               </li>
             </ul>
           ) : (
