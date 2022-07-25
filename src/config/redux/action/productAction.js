@@ -24,7 +24,7 @@ export const getDataByid = (id) => async (dispatch) => {
     dispatch({ type: "GET_DETAIL_PENDING" });
     const result = await axios({
       method: "GET",
-      baseURL: "http://localhost:4000/v1",
+      baseURL: process.env.REACT_APP_API_BLANJA,
       url: `/products/${id}`,
     });
     // console.log(result.data.data[5].photo);

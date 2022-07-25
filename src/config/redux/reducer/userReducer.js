@@ -3,7 +3,7 @@ const initialState = {
     name: "",
     email: "",
   },
-  mycart: [],
+  // mycart: [],
   isLoading: false,
   isLogin: false,
 };
@@ -42,11 +42,6 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: { ...state.user, ...action.payload.profile },
-      };
-    case "GET_MYCART":
-      return {
-        ...state,
-        mycart: action.payload.cart,
       };
     default:
       return state;

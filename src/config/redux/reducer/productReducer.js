@@ -6,7 +6,7 @@ const initialState = {
     totalData: 0,
     totalPage: 0,
   },
-  isGeting: false,
+  isLoading: false,
   detailProduct: [],
 };
 
@@ -52,13 +52,29 @@ const productReducer = (state = initialState, action) => {
   // }
 
   switch (action.type) {
+    case "GET_DATA_PENDING":
+      return {
+        ...state,
+        isLoading: true
+      }
     case "GET_DATA_SUCCESS":
       return {
         ...state,
         product: action.payload.product,
         pagination: action.payload.pagination,
-        isGeting:true
+        isLoading:false
       }
+      case "GET_DETAIL_PENDING":
+        return {
+          ...state,
+          isLoading: true
+        }
+      case "GET_DETAIL_SUCCESS":
+        return {
+          ...state,
+          detailProduct: action.payload.product,
+          isLoading: false
+        }
       default:
         return state
   }

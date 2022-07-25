@@ -4,24 +4,24 @@ import styles from "./bag.module.css";
 import Button from "../../component/base/Button";
 import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
-import { addPlus, deleteProdct, getProductBag, minQty } from "../../config/redux/action/bagAction";
+import { addPlus, deleteProdct, getMyCart, getProductBag, minQty } from "../../config/redux/action/bagAction";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom'
 
 const Bag = () => {
-  // const { product } = useSelector((state) => state.bag);
-  const { mycart } = useSelector((state) => state.user);
+  const { mycart } = useSelector((state) => state.bag);
   const navigate = useNavigate();
-  // let [count, setCount] = useState(1);
-  let [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
-  // console.log(product);
-  // const navigate = useNavigate()
-  // useEffect(() => {
-  //   dispatch(getProductBag());
-  //   console.log("apakah ini jalan");
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [product]);
+  let totalHarga = 0
+  for(let i = 0; i < mycart.length; i++){
+    // setTotalPrice((current)=> current += mycart[i].price)
+    totalHarga += mycart[i].price * mycart[i].qty
+  }
+  useEffect(() => {
+    dispatch(getMyCart());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
@@ -150,7 +150,7 @@ const Bag = () => {
                   <table className="table">
                     <tbody>
                       <td className={"float start " + styles.total_price}>Total Price</td>
-                      <td className="float-end fw-bold">{totalPrice}</td>
+                      <td className="float-end fw-bold">{totalHarga}</td>
                     </tbody>
                   </table>
                 </div>

@@ -24,15 +24,7 @@ export const loginUser = (dataForm, navigate) => async (dispatch) => {
     localStorage.setItem("token", user.token);
     localStorage.setItem("refreshToken", user.refreshToken);
     localStorage.setItem("roleId", user.role_id);
-    dispatch({ type: "USER_LOGIN_SUCCESS", payload: { user } });
-    const myCart = await axios.get(`${process.env.REACT_APP_API_BLANJA}/cart`, {
-      "content-type": "multipart/form-data",
-      headers: {
-        Authorization: `Bearer ${user.token}`
-      }
-    })
-    const cart = myCart.data.data
-    dispatch({type: "GET_MYCART", payload: {cart}})
+    dispatch({ type: "USER_LOGIN_SUCCESS", payload: { user } });   
     alert("Anda berhasil Login");
     navigate("/home");
   } catch (error) {
