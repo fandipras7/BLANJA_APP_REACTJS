@@ -7,9 +7,13 @@ import sellingimg from "../image/profile/person.png";
 import homeMenu from "../image/profile/homeMenu.png";
 import productMenu from "../image/profile/package_1.png";
 import orderMenu from "../image/profile/cart_min.png";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const StoreProfile = () => {
+
+  const { user } = useSelector((state) => state.user);
+
   const navigate = useNavigate()
   return (
     <div>
@@ -24,7 +28,7 @@ const StoreProfile = () => {
                     <img src={sellingimg} alt="fp" />
                   </div>
                   <div className="name d-flex flex-column ms-2">
-                    <p className="">Johanes Mikael</p>
+                    <p className="">{user.name}</p>
                     <i className="bi bi-pencil">
                       <p className="">Edit Profile</p>
                     </i>
@@ -81,7 +85,7 @@ const StoreProfile = () => {
                               Name
                             </label>
                             <div className="col-sm-8">
-                              <input type="text" className="form-control" value="Johanes Mikael" />
+                              <input type="text" className="form-control" value={user.name} />
                             </div>
                           </div>
                           <div className="mb-3 mt-1 row">
@@ -89,7 +93,7 @@ const StoreProfile = () => {
                               Email
                             </label>
                             <div className="col-sm-8">
-                              <input type="text" className="form-control" value="Johanes@gmail.com" />
+                              <input type="text" className="form-control" value={user.email} />
                             </div>
                           </div>
                           <div className="mb-3 mt-1 row">
@@ -97,7 +101,7 @@ const StoreProfile = () => {
                               Phone Number
                             </label>
                             <div className="col-sm-8">
-                              <input type="text" className="form-control" value="0818098131" />
+                              <input type="text" className="form-control" value={user.phone_number} />
                             </div>
                           </div>
                           <div class="mb-4 row">

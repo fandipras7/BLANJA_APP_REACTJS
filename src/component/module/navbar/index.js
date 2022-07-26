@@ -3,15 +3,15 @@ import { NavLink, Link, useNavigate, } from "react-router-dom";
 import styles from "./navbar.module.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
-import sortPic from "./img/sort.png";
+// import sortPic from "./img/sort.png";
 import mail from "./img/mail.png"
 import ava from "./img/avatar.png"
 import notif from "./img/notif.png"
 import cartPic from "./img/cart.png";
 import logo from "./img/logoBlanja.png";
 import searchImg from "./img/search.png";
-import { useSelector } from "react-redux";
-import notifIcon from './icon/bell.svg'
+// import { useSelector } from "react-redux";
+// import notifIcon from './icon/bell.svg'
 // import { searchProduct } from "../../../config/redux/action/searchAction";
 
 const Navbar = ({ className, onChange, onClickButton }) => {
@@ -20,7 +20,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
   // const [searchParams, setSearchParams] = useSearchParams({});
   // const dispatch = useDispatch();
   const token = localStorage.getItem('token')
-  const { isLogin } = useSelector((state) => state.user);
+  // const { isLogin } = useSelector((state) => state.user);
   const [tampilkan, setTampilkan] = useState("");
   const role = localStorage.getItem('roleId')
  
@@ -86,20 +86,16 @@ const Navbar = ({ className, onChange, onClickButton }) => {
                 </NavLink>
               </li>
               <li className="nav-item ms-2 mt-2">
-                <NavLink to="/Login">
                   <Button border="none" backgroundColor="white" className="btn btn-light" type="submit">
                     {/* <img src=".image/s/navbar/notif.png" alt="" /> */}
                     <img src={notif} alt="" />
                   </Button>
-                </NavLink>
               </li>
               <li className="nav-item ms-2 mt-2">
-                <NavLink to="/Register">
                   <Button border="none" backgroundColor="white" className="btn btn-light">
                     {/* <img src="./images/navbar/mail.png" alt="" /> */}
                     <img src={mail} alt="" />
                   </Button>
-                </NavLink>
               </li>
               <li className="nav-item ms-2 mt-2">
                 {/* <NavLink to="/StoreProfile/myproduct">

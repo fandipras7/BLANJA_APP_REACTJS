@@ -6,7 +6,7 @@ import Button from "../../component/base/Button";
 // import axios from "axios";
 
 // images
-import mainPhoto from "./image/bajubesar.png";
+// import mainPhoto from "./image/bajubesar.png";
 // import p1 from "./image/b1.png";
 // import p2 from "./image/b2.png";
 // import p3 from "./image/b3.png";

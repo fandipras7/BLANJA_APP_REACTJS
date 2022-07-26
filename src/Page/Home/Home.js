@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import Button from "../../component/base/Button";
+// import Button from "../../component/base/Button";
 import Navbar from "../../component/module/navbar";
 import styles from "./home.module.css";
 import Card from "../../component/base/card";
@@ -29,7 +29,7 @@ const Home = () => {
 
   const [page, setPage] = useState({
     currentPage: 1,
-    limit: 2,
+    limit: 3,
     keyword,
   });
 
@@ -50,6 +50,9 @@ const Home = () => {
   };
 
   const [query, setQuery] = useState({})
+
+  console.log(keyword);
+  console.log(sortby);
 
   useEffect(() => {
     dispatch(getCategory());
@@ -129,7 +132,7 @@ const Home = () => {
                 <p>What are you currently looking for</p>
               </div>
             </div>
-            <div className="row position-relative row-cols-2 row-cols-md-3 row-cols-lg-5">
+            <div className="row position-relative justify-content-center row-cols-2 row-cols-md-3 row-cols-lg-5">
               {category.map((item) => (
                 <div className="col">
                   <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
@@ -140,9 +143,9 @@ const Home = () => {
                   </div>
                 </div>
               ))}
-              <Button className={styles.btnCategory} width="52px" height="52px" borderRadius="50%" backgroundColor="white">
+              {/* <Button className={styles.btnCategory} width="52px" height="52px" borderRadius="50%" backgroundColor="white">
                 <img src="./images/home/category/rigth.png" alt="" />
-              </Button>
+              </Button> */}
             </div>
           </div>
 

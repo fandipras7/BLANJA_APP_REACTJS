@@ -2,7 +2,7 @@ import axios from "axios";
 export const loginSeller = (dataForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "USER_LOGIN_PENDING" });
-    const result = await axios.post("http://localhost:4000/v1/seller/login", dataForm);
+    const result = await axios.post(`${process.env.REACT_APP_API_BLANJA}/seller/login`, dataForm);
     const user = result.data.data;
     localStorage.setItem("token", user.token);
     localStorage.setItem("refreshToken", user.refreshToken);

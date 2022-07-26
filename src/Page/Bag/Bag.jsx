@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../component/module/navbar";
 import styles from "./bag.module.css";
 import Button from "../../component/base/Button";
 import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
-import { addPlus, deleteProdct, getMyCart, getProductBag, minQty } from "../../config/redux/action/bagAction";
+import { getMyCart } from "../../config/redux/action/bagAction";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom'
 
 const Bag = () => {
   const { mycart } = useSelector((state) => state.bag);
   const navigate = useNavigate();
-  const [totalPrice, setTotalPrice] = useState(0);
+  // const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   let totalHarga = 0
   for(let i = 0; i < mycart.length; i++){

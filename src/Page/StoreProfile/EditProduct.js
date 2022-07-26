@@ -4,7 +4,7 @@ import Navbar from "../../component/module/navbar";
 import styles from "./editProduct.module.css";
 import axios from "axios";
 import { editProduct } from "../../config/redux/action/productAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import avaImg from "../image/profile/person.png";
 import menuHome from "../image/profile/homeMenu.png";
@@ -13,11 +13,13 @@ import menuOrder from "../image/profile/cart_min.png";
 
 const EditProduct = () => {
   const { id } = useParams();
+  const { category } = useSelector((state) => state.category);
   const [dataProduct, setDataProduct] = useState({
     name: "",
     price: "",
     stock: "",
     description: "",
+    category: ""
   });
   const [condition, setCondition] = useState("");
   const [photo, setPhoto] = useState("");
@@ -28,7 +30,7 @@ const EditProduct = () => {
     try {
       const result = await axios({
         method: "GET",
-        baseURL: "http://localhost:4000/v1",
+        baseURL: `${process.env.REACT_APP_API_BLANJA}`,
         url: `/products/${id}`,
       });
       const products = result.data.data;
@@ -59,7 +61,7 @@ const EditProduct = () => {
   const handleChangeNumber = (e) => {
     setDataProduct({
       ...dataProduct,
-      [e.target.name]: parseInt(e.target.value),
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -72,11 +74,12 @@ const EditProduct = () => {
   const handleUpdate = (e) => {
     const data = new FormData();
     data.append("name", dataProduct.name);
-    data.append("price", dataProduct.price);
-    data.append("stock", dataProduct.stock);
+    data.append("price", parseInt(dataProduct.price));
+    data.append("stock", parseInt(dataProduct.stock));
     data.append("condition", condition);
     data.append("description", dataProduct.description);
     data.append("photo", photo);
+    data.append("idCategory", dataProduct.category)
     e.preventDefault();
     dispatch(editProduct(data, navigate, id));
     // axios

@@ -11,7 +11,7 @@ import searchbtn from "../image/profile/search.png";
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, getData, getMyProduct } from "../../config/redux/action/productAction";
+import { deleteProduct, getMyProduct } from "../../config/redux/action/productAction";
 const MyProduct = () => {
   const dispatch = useDispatch();
   // const [products, setProducts] = useState([]);
