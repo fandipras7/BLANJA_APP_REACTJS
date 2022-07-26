@@ -35,9 +35,32 @@ export const getDataByid = (id) => async (dispatch) => {
   }
 };
 
+export const getMyProduct = () => async (dispatch) =>{
+  try {
+    const token = localStorage.getItem('token')
+    dispatch({type: "GET_MYPRODUCT_PENDING"})
+    const result = await axios.get(`${process.env.REACT_APP_API_BLANJA}/products/myproduct`, 
+    { "content-type": "multipart/form-data",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  const myproduct = result.data.data
+  dispatch({type: "GET_MYPRODUCT_SUCCESS", payload: {myproduct}})
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const addProduct = (dataform, navigate) => async (dispatch) => {
   try {
-    const result = await axios.post("http://localhost:4000/v1/products", dataform, { "content-type": "multipart/form-data" });
+    const token = localStorage.getItem('token')
+    const result = await axios.post("http://localhost:4000/v1/products", dataform, 
+    { "content-type": "multipart/form-data",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
     // await axios(
     //   {
     //     method: "POST",
@@ -71,7 +94,8 @@ export const editProduct = (dataform, navigate, id) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   try {
     await axios.delete(`http://localhost:4000/v1/products/${id}`);
-    dispatch({ type: "DELETE_PRODUCT", payload: { id } });
+    dispatch({ type: "DELETE_PRODUCT_SUCCESS"});
+    alert("Berhasil menghapus produk");
   } catch (error) {
     console.log(error);
     alert("Gagal menghapus produk");

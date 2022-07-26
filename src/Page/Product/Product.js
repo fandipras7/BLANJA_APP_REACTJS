@@ -28,7 +28,7 @@ const Product = () => {
   // console.log(id);
   // const [products, setProducts] = useState([]);
   const { detailProduct, isLoading } = useSelector((state) => state.product);
-  const photo = detailProduct.photo;
+  console.log(detailProduct);
   // async function fetchData() {
   //   try {
   //     const result = await axios({
@@ -51,6 +51,8 @@ const Product = () => {
     addMycart(data, navigate)
   };
 
+  console.log(isLoading);
+
   useEffect(() => {
     // fetchData();
     dispatch(getDataByid(id));
@@ -58,7 +60,8 @@ const Product = () => {
   }, []);
   return (
     <Fragment>
-      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true}></Navbar>
+      {/* <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true}></Navbar> */}
+      <Navbar className="navbar navbar-expand-lg navbar-light fixed-top"></Navbar>
       <main className="mb-5">
         {isLoading ? (<div className="vh-100 text-center">
           <h3>Geting...</h3>
@@ -67,35 +70,35 @@ const Product = () => {
           <div>
             <section id="photo-product">
               <div className="container">
-                <p>{`Home > Category > ${detailProduct.name_category}`}</p>
+                <p>{`Home > Category > ${detailProduct?.name_category}`}</p>
                 <div className="row">
                   <div className="col-12 col-lg-4 mt-5">
                     <div className="row">
                       <div className="col">
-                        <img src={photo ? photo : mainPhoto} className="w-100" alt="" />
+                        <img src={detailProduct?.photo} className="w-100" alt="" />
                       </div>
                     </div>
                     <div className="row row-cols-5 mt-2">
                       <div className="col">
-                        <img src={photo} className="img-fluid" alt="baju1" />
+                        <img src={detailProduct?.photo} className="img-fluid" alt="baju1" />
                       </div>
                       <div className="col">
-                        <img src={photo} className="img-fluid" alt="baju1" />
+                        <img src={detailProduct?.photo} className="img-fluid" alt="baju1" />
                       </div>
                       <div className={"col"}>
-                        <img src={photo} className="img-fluid" alt="baju1" />
+                        <img src={detailProduct?.photo} className="img-fluid" alt="baju1" />
                       </div>
                       <div className="col">
-                        <img src={photo} className="img-fluid" alt="baju1" />
+                        <img src={detailProduct?.photo} className="img-fluid" alt="baju1" />
                       </div>
                       <div className="col">
-                        <img src={photo} className="img-fluid" alt="baju1" />
+                        <img src={detailProduct?.photo} className="img-fluid" alt="baju1" />
                       </div>
                     </div>
                   </div>
                   <div className="col-12 col-lg-8 mt-5">
-                    <p className="fw-bold fs-4">{detailProduct.name}</p>
-                    <p className="fw-light text-success">{detailProduct.brand}</p>
+                    <p className="fw-bold fs-4">{detailProduct?.name}</p>
+                    <p className="fw-light text-success">{detailProduct?.brand}</p>
                     <div className="rating d-flex">
                       <div>
                         <img src={star2} alt="" />
@@ -119,7 +122,7 @@ const Product = () => {
                     </div>
                     <div className="price">
                       <p>Price</p>
-                      <p className="fw-bold fs-3">{detailProduct.price}</p>
+                      <p className="fw-bold fs-3">{detailProduct?.price}</p>
                     </div>
                     <div className="d-flex flex-column">
                       <p className="ms-1">Color</p>
@@ -182,6 +185,7 @@ const Product = () => {
                       </button>
                       <button
                         onClick={() => {
+                          console.log(detailProduct.id);
                           handleAddBag(detailProduct.id, navigate);
                         }}
                         type="button"
@@ -203,7 +207,7 @@ const Product = () => {
                 <p class="mt-5 fw-bold fs-3">Informasi Produk</p>
                 <div class="mt-5">
                   <p class="fw-bold fs-4">Condition</p>
-                  <p class="">{detailProduct.condition}</p>
+                  <p class="">{detailProduct?.condition}</p>
                 </div>
                 <div>
                   <p class="fw-bold fs-4">Description</p>

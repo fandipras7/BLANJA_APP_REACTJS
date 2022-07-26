@@ -8,6 +8,7 @@ const initialState = {
   },
   isLoading: false,
   detailProduct: [],
+  myproduct: [],
 };
 
 const productReducer = (state = initialState, action) => {
@@ -55,28 +56,44 @@ const productReducer = (state = initialState, action) => {
     case "GET_DATA_PENDING":
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
     case "GET_DATA_SUCCESS":
       return {
         ...state,
         product: action.payload.product,
         pagination: action.payload.pagination,
-        isLoading:false
-      }
-      case "GET_DETAIL_PENDING":
-        return {
-          ...state,
-          isLoading: true
-        }
-      case "GET_DETAIL_SUCCESS":
-        return {
-          ...state,
-          detailProduct: action.payload.product,
-          isLoading: false
-        }
-      default:
-        return state
+        isLoading: false,
+      };
+    case "GET_DETAIL_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "GET_DETAIL_SUCCESS":
+      return {
+        ...state,
+        detailProduct: action.payload.product,
+        isLoading: false,
+      };
+    case "GET_MYPRODUCT_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "GET_MYPRODUCT_SUCCESS":
+      return {
+        ...state,
+        myproduct: action.payload.myproduct,
+        isLoading: true,
+      };
+    case "DELETE_PRODUCT_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+      };
+    default:
+      return state;
   }
 };
 

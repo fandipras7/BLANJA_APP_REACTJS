@@ -4,10 +4,14 @@ import styles from "./navbar.module.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
 import sortPic from "./img/sort.png";
+import mail from "./img/mail.png"
+import ava from "./img/avatar.png"
+import notif from "./img/notif.png"
 import cartPic from "./img/cart.png";
 import logo from "./img/logoBlanja.png";
 import searchImg from "./img/search.png";
 import { useSelector } from "react-redux";
+import notifIcon from './icon/bell.svg'
 // import { searchProduct } from "../../../config/redux/action/searchAction";
 
 const Navbar = ({ className, onChange, onClickButton }) => {
@@ -15,15 +19,17 @@ const Navbar = ({ className, onChange, onClickButton }) => {
   // const [search, setSearch] = useState("");
   // const [searchParams, setSearchParams] = useSearchParams({});
   // const dispatch = useDispatch();
+  const token = localStorage.getItem('token')
   const { isLogin } = useSelector((state) => state.user);
   const [tampilkan, setTampilkan] = useState("");
   const role = localStorage.getItem('roleId')
  
 
   const handleLogout = ()=>{
-    localStorage.removeItem('token')
-    localStorage.removeItem('roleId')
-    localStorage.removeItem('refreshToken')
+    // localStorage.removeItem('token')
+    // localStorage.removeItem('roleId')
+    // localStorage.removeItem('refreshToken')
+    localStorage.clear()
     navigate('/login')
   }
   // console.log(search);
@@ -70,7 +76,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
         </Button>
         <div className={"collapse navbar-collapse my-auto " + tampilkan} id="navbarNav">
           {/* <li className="nav-item"></li> */}
-          {isLogin ? (
+          {token ? (
             <ul className="navbar-nav ms-auto ps-2 align-items-center">
               <li className="nav-item mt-2">
                 <NavLink to="/Mybag">
@@ -82,14 +88,16 @@ const Navbar = ({ className, onChange, onClickButton }) => {
               <li className="nav-item ms-2 mt-2">
                 <NavLink to="/Login">
                   <Button border="none" backgroundColor="white" className="btn btn-light" type="submit">
-                    <img src="./images/navbar/notif.png" alt="" />
+                    {/* <img src=".image/s/navbar/notif.png" alt="" /> */}
+                    <img src={notif} alt="" />
                   </Button>
                 </NavLink>
               </li>
               <li className="nav-item ms-2 mt-2">
                 <NavLink to="/Register">
                   <Button border="none" backgroundColor="white" className="btn btn-light">
-                    <img src="./images/navbar/mail.png" alt="" />
+                    {/* <img src="./images/navbar/mail.png" alt="" /> */}
+                    <img src={mail} alt="" />
                   </Button>
                 </NavLink>
               </li>
@@ -99,10 +107,11 @@ const Navbar = ({ className, onChange, onClickButton }) => {
                 </NavLink> */}
                 <div className={styles.dropdown}>
                   <Button border="none" backgroundColor="white" className="btn btn-light">
-                    <img className={styles.ava} src="./images/navbar/avatar.png" alt="" />
+                    {/* <img className={styles.ava} src="./images/navbar/avatar.png" alt="" /> */}
+                    <img className={styles.ava} src={ava} alt="" />
                   </Button>
                   <div className={styles.dropdown_content}>
-                    <Link to={role === 'customer' ? "/profile" : "/StoreProfile/myproduct"}>Profile </Link>
+                    <Link to={role === 'customer' ? "/profile" : "/storeprofile"}>Profile </Link>
                     <p onClick={handleLogout}>Logout</p>
                   </div>
                 </div>

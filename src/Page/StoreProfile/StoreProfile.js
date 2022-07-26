@@ -7,8 +7,10 @@ import sellingimg from "../image/profile/person.png";
 import homeMenu from "../image/profile/homeMenu.png";
 import productMenu from "../image/profile/package_1.png";
 import orderMenu from "../image/profile/cart_min.png";
+import { Link, useNavigate } from "react-router-dom";
 
 const StoreProfile = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
@@ -33,7 +35,9 @@ const StoreProfile = () => {
                     <img src={homeMenu} alt="" />
                   </div>
                   <div className={styles.select}>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select onChange={
+                      ()=>{navigate('/storeprofile')}
+                    } className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                       <option selected>Store</option>
                     </select>
                   </div>
@@ -43,10 +47,12 @@ const StoreProfile = () => {
                     <img src={productMenu} alt="menu" />
                   </div>
                   <div className={"mb-3 " + styles.select}>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
+                    <select onChange={
+                      (e)=>{ e.target.value === 'selling' ? navigate('/storeprofile/selling') : navigate('/storeprofile/myproduct')}
+                    } className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
                       <option selected>Product</option>
-                      <option value="1">My products</option>
-                      <option value="2">Selling products</option>
+                      <option value="myproduct">My products</option>
+                      <option value="selling">Selling products</option>
                     </select>
                   </div>
                 </div>

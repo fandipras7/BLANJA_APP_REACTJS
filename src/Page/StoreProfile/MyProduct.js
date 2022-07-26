@@ -11,11 +11,11 @@ import searchbtn from "../image/profile/search.png";
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, getData } from "../../config/redux/action/productAction";
+import { deleteProduct, getData, getMyProduct } from "../../config/redux/action/productAction";
 const MyProduct = () => {
   const dispatch = useDispatch();
   // const [products, setProducts] = useState([]);
-  const { product } = useSelector((state) => state.product);
+  const { myproduct } = useSelector((state) => state.product);
   // console.log(product);
   const navigate = useNavigate();
   // async function fetchData() {
@@ -41,9 +41,10 @@ const MyProduct = () => {
   useEffect(() => {
     // fetchData();
     // setProducts(product);
-    dispatch(getData);
+    // dispatch(getData);
+    dispatch(getMyProduct())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product]);
+  }, []);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
@@ -68,8 +69,11 @@ const MyProduct = () => {
                     <img src={homeMenu} alt="" />
                   </div>
                   <div className={styles.select}>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option selected>Store</option>
+                  <select onChange={
+                      ()=>{navigate('/storeprofile')}
+                    } className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="store" selected>Store</option>
+                      <option value="store" selected>Edit porfile</option>
                     </select>
                   </div>
                 </div>
@@ -78,10 +82,12 @@ const MyProduct = () => {
                     <img src={productMenu} alt="menu" />
                   </div>
                   <div className={"mb-3 " + styles.select}>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
+                  <select onChange={
+                      (e)=>{ e.target.value === 'selling' ? navigate('/storeprofile/selling') : navigate('/storeprofile/myproduct')}
+                    } className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
                       <option selected>Product</option>
-                      <option value="1">My products</option>
-                      <option value="2">Selling products</option>
+                      <option value="myproduct">My products</option>
+                      <option value="selling">Selling products</option>
                     </select>
                   </div>
                 </div>
@@ -138,8 +144,8 @@ const MyProduct = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {product.length > 0 ? (
-                              product.map((item) => (
+                            {myproduct?.length > 0 ? (
+                              myproduct.map((item) => (
                                 <tr>
                                   <th scope="row">{item.name}</th>
                                   <td>{item.price}</td>

@@ -8,9 +8,11 @@ import menuHome from "../image/profile/homeMenu.png";
 import menuProduk from "../image/profile/package_1.png";
 import menuOrder from "../image/profile/cart_min.png";
 import { addProduct } from "../../config/redux/action/productAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Selling = () => {
+
+  const { category } = useSelector((state) => state.category);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [dataProduct, setDataProduct] = useState({
@@ -18,6 +20,7 @@ const Selling = () => {
     price: "",
     stock: "",
     description: "",
+    category: ""
   });
   const [condition, setCondition] = useState("");
   const [photo, setPhoto] = useState("https://fakeimg.pl/350x250/");
@@ -33,7 +36,7 @@ const Selling = () => {
   const handleChangeNumber = (e) => {
     setDataProduct({
       ...dataProduct,
-      [e.target.name]: parseInt(e.target.value),
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -46,19 +49,21 @@ const Selling = () => {
   const handleAddproduct = (e) => {
     const data = new FormData();
     data.append("name", dataProduct.name);
-    data.append("price", dataProduct.price);
-    data.append("stock", dataProduct.stock);
-    data.append("condition", dataProduct.condition);
+    data.append("price", parseInt(dataProduct.price));
+    data.append("stock", parseInt(dataProduct.stock));
+    data.append("condition", condition);
     data.append("description", dataProduct.description);
     data.append("photo", photo);
+    data.append("idCategory", dataProduct.category)
+    console.log(data);
     e.preventDefault();
 
     dispatch(addProduct(data, navigate));
   };
 
   console.log(dataProduct);
-  console.log(condition);
-  console.log(photo);
+  // console.log(condition);
+  // console.log(photo);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home=""></Navbar>
@@ -83,8 +88,11 @@ const Selling = () => {
                     <img src={menuHome} alt="" />
                   </div>
                   <div className={styles.select}>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option selected>Store</option>
+                  <select onChange={
+                      ()=>{navigate('/storeprofile')}
+                    } className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="store" selected>Store</option>
+                      <option value="store" selected>Edit porfile</option>
                     </select>
                   </div>
                 </div>
@@ -93,10 +101,12 @@ const Selling = () => {
                     <img src={menuProduk} alt="menu" />
                   </div>
                   <div className={"mb-3 " + styles.select}>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
+                  <select onChange={
+                      (e)=>{ e.target.value === 'selling' ? navigate('/storeprofile/selling') : navigate('/storeprofile/myproduct')}
+                    } className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
                       <option selected>Product</option>
-                      <option value="1">My products</option>
-                      <option value="2">Selling products</option>
+                      <option value="myproduct">My products</option>
+                      <option value="selling">Selling products</option>
                     </select>
                   </div>
                 </div>
@@ -141,6 +151,19 @@ const Selling = () => {
                           <div className="col-sm-4">
                             <input type="text" className="form-control" name="price" value={dataProduct.price} id="price" onChange={handleChangeNumber} />
                           </div>
+                          <label htmlFor="category" className="col-sm-2 col-form-label">
+                            <span className="fw-light">Category</span>
+                          </label>
+                          <div className="col-sm-4">
+                           <select onChange={
+                            (e)=>{handleChange(e)}
+                           } name="category" id="category">
+                            <option value="">Select Category</option>
+                            {category ? category.map((item)=> (
+                              <option value={item.id}>{item.name}</option>
+                            )) : ('No Category Found')}
+                           </select>
+                          </div>
                           <label for="stock" className="col-sm-2 col-form-label">
                             <span className="fw-light">Stock</span>
                           </label>
@@ -148,7 +171,7 @@ const Selling = () => {
                             <input type="text" placeholder="unit" className="form-control" name="stock" value={dataProduct.stock} id="stock" onChange={handleChangeNumber} />
                           </div>
                           <label for="stock" className="col-sm-2 col-form-label">
-                            <span className="fw-light">Stock</span>
+                            <span className="fw-light">Category</span>
                           </label>
                           <div className="col-sm-4">
                             <div className="form-check form-check-inline">

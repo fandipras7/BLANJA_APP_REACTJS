@@ -6,6 +6,11 @@ import axios from "axios";
 import { editProduct } from "../../config/redux/action/productAction";
 import { useDispatch } from "react-redux";
 
+import avaImg from "../image/profile/person.png";
+import menuHome from "../image/profile/homeMenu.png";
+import menuProduk from "../image/profile/package_1.png";
+import menuOrder from "../image/profile/cart_min.png";
+
 const EditProduct = () => {
   const { id } = useParams();
   const [dataProduct, setDataProduct] = useState({
@@ -19,7 +24,7 @@ const EditProduct = () => {
   const [image, setImage] = useState("");
 
   const dispatch = useDispatch();
-  async function fetchData() {
+  async function fetchData(id) {
     try {
       const result = await axios({
         method: "GET",
@@ -86,7 +91,7 @@ const EditProduct = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(dataProduct);
@@ -100,7 +105,7 @@ const EditProduct = () => {
               <div className={"col-12 col-xl-4 text-end position-relative " + styles.menu}>
                 <div className={"d-flex " + styles.menuHeader + " ms-5 mt-5 justify-content-center"}>
                   <div>
-                    <img src="./images/selling/person.png" alt="fp" />
+                    <img src={avaImg} alt="fp" />
                   </div>
                   <div className="name d-flex flex-column ms-2">
                     <p className="">Johanes Mikael</p>
@@ -111,7 +116,7 @@ const EditProduct = () => {
                 </div>
                 <div className="d-flex mt-5 align-items-center justify-content-center">
                   <div className={"mb-3 " + styles.circle + " " + styles.store}>
-                    <img src="./images/selling/homeMenu.png" alt="" />
+                    <img src={menuHome} alt="" />
                   </div>
                   <div className={styles.select}>
                     <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
@@ -121,7 +126,7 @@ const EditProduct = () => {
                 </div>
                 <div className="d-flex align-items-center justify-content-center">
                   <div className={"mb-4 " + styles.circle + " " + styles.product}>
-                    <img src="./images/selling/package_1.png" alt="menu" />
+                    <img src={menuProduk} alt="menu" />
                   </div>
                   <div className={"mb-3 " + styles.select}>
                     <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example ">
@@ -133,7 +138,7 @@ const EditProduct = () => {
                 </div>
                 <div className="d-flex align-items-center justify-content-center">
                   <div className={"mb-3 " + styles.circle + " " + styles.order}>
-                    <img src="./images/selling/cart_min.png" alt="" />
+                    <img src={menuOrder} alt="" />
                   </div>
                   <div className={styles.select}>
                     <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
@@ -172,6 +177,19 @@ const EditProduct = () => {
                           <div className="col-sm-4">
                             <input type="text" className="form-control" value={dataProduct.price} name="price" id="price" onChange={handleChangeNumber} />
                             {/* <input type="text" className="form-control" value={dataProduct.price === undefined ? products.price : dataProduct.price} name="price" id="price" onChange={handleChangeNumber} /> */}
+                          </div>
+                          <label htmlFor="category" className="col-sm-2 col-form-label">
+                            <span className="fw-light">Category</span>
+                          </label>
+                          <div className="col-sm-4">
+                           <select onChange={
+                            (e)=>{handleChange(e)}
+                           } name="category" id="category">
+                            <option value="">Select Category</option>
+                            {category ? category.map((item)=> (
+                              <option value={item.id}>{item.name}</option>
+                            )) : ('No Category Found')}
+                           </select>
                           </div>
                           <label for="stock" className="col-sm-2 col-form-label">
                             <span className="fw-light">Stock</span>
