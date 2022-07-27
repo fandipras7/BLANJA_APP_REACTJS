@@ -212,17 +212,7 @@ const Product = () => {
                 <div>
                   <p class="fw-bold fs-4">Description</p>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-                    <br />
-                    <br />
-                    Donec non magna rutrum, pellentesque augue eu, sagittis velit. Phasellus quis laoreet dolor. Fusce nec pharetra quam. Interdum et malesuada fames ac ante ipsum primis <br />
-                    in faucibus. Praesent sed enim vel turpis blandit imperdiet ac ac felis. Etiam tincidunt tristique placerat. Pellentesque a consequat mauris, vel suscipit ipsum. <br />
-                    Donec ac mauris vitae diam commodo vehicula. Donec quam elit, sollicitudin eu nisl at, ornare suscipit magna. Donec non magna <br />
-                    <br />
-                    rutrum, pellentesque augue eu, sagittis velit. Phasellus quis laoreet dolor. Fusce nec pharetra quam. Interdum et malesuada fames ac ante ipsum <br />
-                    primis in faucibus. Praesent sed enim vel turpis blandit imperdiet ac ac felis. <br />
-                    <br />
-                    In ultricies rutrum tempus. Mauris vel molestie orci.
+                    {detailProduct?.description}
                   </p>
                 </div>
               </div>

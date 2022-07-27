@@ -6,7 +6,7 @@ import Button from "../../component/base/Button";
 import { useSelector } from "react-redux";
 
 const Checkout = () => {
-  const { product } = useSelector((state) => state.bag);
+  const { mycart } = useSelector((state) => state.bag);
   const {user} = useSelector((state)=> state.user)
   return (
     <div>
@@ -24,13 +24,15 @@ const Checkout = () => {
                   Choose another Address
                 </Button>
               </Card>
-              {product.map((item) => (
+              {mycart.map((item) => (
                 <Card className={`${styles.card} px-5 py-3 mt-3`}>
                   <div className="table-responsive-sm">
                     <table className="table">
                       <tbody>
                         <td className="float-start">
-                          <img className="img-products" src="./images/bag/jas.png" alt="fotoproduk1" />
+                        <div style={{ width: '150px' }}>
+                              <img className="img-fluid" src={item.photo} alt="fotoproduk1" />
+                            </div>
                         </td>
                         <td className="align-middle float-start">
                           <p className="fw-bold mb-1">{item.name}</p>

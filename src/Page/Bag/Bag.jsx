@@ -14,13 +14,13 @@ const Bag = () => {
   // const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   let totalHarga = 0
-  for(let i = 0; i < mycart.length; i++){
+  for (let i = 0; i < mycart.length; i++) {
     // setTotalPrice((current)=> current += mycart[i].price)
     totalHarga += mycart[i].price * mycart[i].qty
   }
   useEffect(() => {
     dispatch(getMyCart());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
@@ -67,7 +67,9 @@ const Bag = () => {
                             </div>
                           </td>
                           <td className="float-start">
-                            <img className="img-products" src="./images/bag/jas.png" alt="fotoproduk1" />
+                            <div style={{ width: '150px' }}>
+                              <img className="img-fluid" src={item.photo} alt="fotoproduk1" />
+                            </div>
                           </td>
                           <td className="align-middle float-start">
                             <p className="post mb-1">{item.name}</p>
