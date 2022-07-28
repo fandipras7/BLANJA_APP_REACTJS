@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Card from "../../component/base/card";
 import Navbar from "../../component/module/navbar";
 import styles from "./checkout.module.css";
