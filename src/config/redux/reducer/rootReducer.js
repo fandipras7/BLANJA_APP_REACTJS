@@ -4,6 +4,7 @@ import categoryReducer from "./categoryReducer";
 import productReducer from "./productReducer";
 import searchReducer from "./searchReducer";
 import userReducer from "./userReducer";
+import transactionReducer from "./transactionReducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -11,6 +12,8 @@ const rootReducer = combineReducers({
   search: searchReducer,
   category: categoryReducer,
   bag: bagReducer,
+  order: transactionReducer
+
 });
 
 export default rootReducer;

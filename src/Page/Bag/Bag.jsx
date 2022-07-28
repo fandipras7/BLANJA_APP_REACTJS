@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../component/module/navbar";
 import styles from "./bag.module.css";
 import Button from "../../component/base/Button";
@@ -6,22 +6,72 @@ import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyCart } from "../../config/redux/action/bagAction";
 import { useNavigate } from "react-router-dom";
+import trashIcon from '../../assets/trash3.svg'
+import axios from "axios";
 // import { useNavigate } from 'react-router-dom'
 
 const Bag = () => {
   const { mycart } = useSelector((state) => state.bag);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token')
   // const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
+  const [qty, setQty] = useState(0)
   let totalHarga = 0
   for (let i = 0; i < mycart.length; i++) {
     // setTotalPrice((current)=> current += mycart[i].price)
     totalHarga += mycart[i].price * mycart[i].qty
   }
+
+  const addStock = async (id) => {
+    try {
+      // const token = localStorage.getItem('token')
+      console.log(token);
+      await axios.put(`${process.env.REACT_APP_API_BLANJA}/cart/add/${id}`
+      )
+      setQty(1)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const deleteCart = async (id) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_BLANJA}/cart/${id}`, {
+        "content-type": "multipart/form-data",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setQty(1)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const decreaseStock = (id) => {
+    // const token = localStorage.getItem('token')
+    //  console.log(token);
+    axios.put(`${process.env.REACT_APP_API_BLANJA}/cart/decrease/${id}`)
+      .then(() => {
+        setQty(1)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  const formatRp = (bilangan) => {
+    var reverse = bilangan.toString().split('').reverse().join(''),
+      ribuan = reverse.match(/\d{1,3}/g);
+    ribuan = ribuan.join('.').split('').reverse().join('');
+    return ribuan
+  }
+
   useEffect(() => {
     dispatch(getMyCart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [qty]);
   return (
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
@@ -45,7 +95,7 @@ const Bag = () => {
                           </label>
                         </div>
                       </td>
-                      <td className={"text-right " + styles.delete}>Delete</td>
+                      {/* <td className={"text-right " + styles.delete}>Delete</td> */}
                     </tbody>
                   </table>
                 </div>
@@ -81,6 +131,10 @@ const Bag = () => {
                               //   item.qtyOrder <= 1 ? dispatch(deleteProdct(item.id)) : dispatch(minQty(item.id, item.qtyOrder - 1));
                               //   setTotalPrice(totalPrice + item.qtyOrder * item.price);
                               // }}
+                              onClick={() => {
+                                decreaseStock(item.id)
+
+                              }}
                               backgroundColor="#d4d4d4"
                               width="36px"
                               height="36px"
@@ -95,6 +149,10 @@ const Bag = () => {
                               // onClick={() => {
                               //   dispatch(addPlus(item.id, item.qtyOrder + 1));
                               // }}
+                              onClick={() => {
+                                addStock(item.id)
+
+                              }}
                               backgroundColor="white"
                               width="36px"
                               height="36px"
@@ -103,7 +161,13 @@ const Bag = () => {
                               <img className="mb-2" src="./images/bag/shape.png" alt="btn" />
                             </Button>
                           </td>
-                          <td className={"align-middle fw-bold"}>{item.price * item.qty}</td>
+                          <td className={"align-middle fw-bold"}>{`Rp. `+formatRp(item.price * item.qty)}</td>
+                          <Button onClick={() => {
+                            deleteCart(item.id)
+
+                          }} border="none">
+                            <img src={trashIcon} alt="" />
+                          </Button>
                         </tbody>
                       </table>
                     </div>
@@ -152,7 +216,7 @@ const Bag = () => {
                   <table className="table">
                     <tbody>
                       <td className={"float start " + styles.total_price}>Total Price</td>
-                      <td className="float-end fw-bold">{totalHarga}</td>
+                      <td className="float-end fw-bold">{`Rp. `+formatRp(totalHarga)}</td>
                     </tbody>
                   </table>
                 </div>

@@ -14,6 +14,8 @@ import EditProduct from "../../Page/StoreProfile/EditProduct";
 import MyProduct from "../../Page/StoreProfile/MyProduct";
 import Selling from "../../Page/StoreProfile/Selling";
 import StoreProfile from "../../Page/StoreProfile/StoreProfile";
+import Myorder from "../../Page/Profile/Myorder";
+import OrderDetail from "../../Page/Profile/OrderDetail";
 
 const Router = () => {
   return (
@@ -38,6 +40,8 @@ const Router = () => {
         ></Route>
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/Profile/Transaction" element={<Myorder />} />
+        <Route path="/Profile/OrderDetail/:id" element={<OrderDetail />} />
         <Route path="/StoreProfile" element={<StoreProfile />} />
         <Route path="/StoreProfile/myproduct" element={<MyProduct />} />
       </Routes>

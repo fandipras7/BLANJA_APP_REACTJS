@@ -1,0 +1,6 @@
+.hr {
+    size: 10;
+    width: 100%;
+    color: black;
+    border-bottom: 5px solid black;
+}
