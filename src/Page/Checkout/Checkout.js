@@ -1,14 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../component/base/card";
 import Navbar from "../../component/module/navbar";
 import styles from "./checkout.module.css";
 import Button from "../../component/base/Button";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Checkout = () => {
+  // const [qty, setQty] = useState()
   const { mycart } = useSelector((state) => state.bag);
   const {user} = useSelector((state)=> state.user)
+  const [provider, setProvider] = useState('CMB NIAGA')
+
+  let totalHarga = 0
+  for (let i = 0; i < mycart.length; i++) {
+    // setTotalPrice((current)=> current += mycart[i].price)
+    totalHarga += mycart[i].price * mycart[i].qty
+  }
+  const product = mycart.map((item)=>{
+    return {
+      id: item.product_id,
+      quantity: item.qty
+    }
+  })
+
+  const dataOrder = {
+    provider,
+    amount: totalHarga,
+    product
+  }
+
+  const createOrder = async (data) => {
+    try {
+      const token = localStorage.getItem('token')
+      await axios.post(`http://localhost:4000/v1/transaction`, data, {
+        "content-type": "multipart/form-data",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  console.log(product);
   return (
+
+    // useEffect(()=>{
+    //   setQty
+    // })
     <div>
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
       <section id={styles["checkout"]}>
@@ -38,7 +79,7 @@ const Checkout = () => {
                           <p className="fw-bold mb-1">{item.name}</p>
                           <span className="text-secondary sub-post">{item.brand}</span>
                         </td>
-                        <td className={"align-middle fw-bold"}>{item.brand}</td>
+                        <td className={"align-middle fw-bold"}>{item.qty * item.price}</td>
                       </tbody>
                     </table>
                   </div>
@@ -69,20 +110,22 @@ const Checkout = () => {
                     <tbody>
                       <tr>
                         <td className={"float start " + styles.total_price}>Order</td>
-                        <td className="float-end fw-bold">$21.0</td>
+                        <td className="float-end fw-bold">{totalHarga}</td>
                       </tr>
                       <tr className={styles.bottom}>
                         <td className={"float start " + styles.total_price}>Delivery</td>
-                        <td className="float-end fw-bold">$21.0</td>
+                        <td className="float-end fw-bold">Free Ongkir</td>
                       </tr>
                       <tr>
                         <td className={"float start fw-bold"}>Shipping Summary</td>
-                        <td className="float-end fw-bold">$21.0</td>
+                        <td className="float-end fw-bold">{totalHarga}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <Button backgroundColor="#DB3022" color="white" borderRadius="25px" className="w-100">
+                <Button onClick={
+                  ()=>{createOrder(dataOrder)}
+                } backgroundColor="#DB3022" color="white" borderRadius="25px" className="w-100">
                   Buy
                 </Button>
               </Card>
