@@ -27,7 +27,7 @@ const Bag = () => {
     try {
       // const token = localStorage.getItem('token')
       console.log(token);
-      await axios.put(`http://localhost:4000/v1/cart/add/${id}`
+      await axios.put(`${process.env.REACT_APP_API_BLANJA}/cart/add/${id}`
       )
       setQty(1)
     } catch (error) {
@@ -37,7 +37,7 @@ const Bag = () => {
 
   const deleteCart = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/v1/cart/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_BLANJA}/cart/${id}`, {
         "content-type": "multipart/form-data",
         headers: {
           Authorization: `Bearer ${token}`
@@ -52,7 +52,7 @@ const Bag = () => {
   const decreaseStock = (id) => {
     // const token = localStorage.getItem('token')
     //  console.log(token);
-    axios.put(`http://localhost:4000/v1/cart/decrease/${id}`)
+    axios.put(`${process.env.REACT_APP_API_BLANJA}/cart/decrease/${id}`)
       .then(() => {
         setQty(1)
       })
@@ -61,13 +61,12 @@ const Bag = () => {
       })
   }
 
-  // for(let i = 0; i <= mycart.length; i++ ){
-  //   const [qty$, setQty +''+ i] = useState()
-  // }
-
-  // const addQty = (item) => {
-  //   setQty(item.id)
-  // }
+  const formatRp = (bilangan) => {
+    var reverse = bilangan.toString().split('').reverse().join(''),
+      ribuan = reverse.match(/\d{1,3}/g);
+    ribuan = ribuan.join('.').split('').reverse().join('');
+    return ribuan
+  }
 
   useEffect(() => {
     dispatch(getMyCart());
@@ -96,7 +95,7 @@ const Bag = () => {
                           </label>
                         </div>
                       </td>
-                      <td className={"text-right " + styles.delete}>Delete</td>
+                      {/* <td className={"text-right " + styles.delete}>Delete</td> */}
                     </tbody>
                   </table>
                 </div>
@@ -162,7 +161,7 @@ const Bag = () => {
                               <img className="mb-2" src="./images/bag/shape.png" alt="btn" />
                             </Button>
                           </td>
-                          <td className={"align-middle fw-bold"}>{item.price * item.qty}</td>
+                          <td className={"align-middle fw-bold"}>{`Rp. `+formatRp(item.price * item.qty)}</td>
                           <Button onClick={() => {
                             deleteCart(item.id)
 
@@ -217,7 +216,7 @@ const Bag = () => {
                   <table className="table">
                     <tbody>
                       <td className={"float start " + styles.total_price}>Total Price</td>
-                      <td className="float-end fw-bold">{totalHarga}</td>
+                      <td className="float-end fw-bold">{`Rp. `+formatRp(totalHarga)}</td>
                     </tbody>
                   </table>
                 </div>

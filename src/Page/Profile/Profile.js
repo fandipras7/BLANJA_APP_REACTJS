@@ -5,10 +5,12 @@ import Button from "../../component/base/Button";
 import Card from "../../component/base/card";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../../config/redux/action/userAction";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate(0)
   console.log('ini punya user');
   console.log(user);
 
@@ -104,7 +106,7 @@ const Profile = () => {
               </div>
               <div className={styles.menu + " mt-5"}>
                 <div className={`d-flex`}>
-                  <Button backgroundColor="#456BF3" width="32px" height="32px" borderRadius="50%">
+                  <Button onClick={() => navigate('/Profile')} backgroundColor="#456BF3" width="32px" height="32px" borderRadius="50%">
                     <img className="mb-1" src="./images/profile/user.png" alt="bro" />
                   </Button>
                   <p className="ms-3">My Account</p>
@@ -116,7 +118,7 @@ const Profile = () => {
                   <p className="ms-3">Shipping Address</p>
                 </div>
                 <div className={`d-flex`}>
-                  <Button backgroundColor="#F3456F" width="32px" height="32px" borderRadius="50%">
+                  <Button onClick={() => navigate('/Profile/Transaction')} backgroundColor="#F3456F" width="32px" height="32px" borderRadius="50%">
                     <img className="mb-1" src="./images/profile/order.png" alt="bro" />
                   </Button>
                   <p className="ms-3">My Order</p>
