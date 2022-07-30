@@ -128,29 +128,20 @@ REACT_APP_API_URL = [API_URL]
 <table>
  
   <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1658734416/portofolio/telechat/Login_lu5tti.png" alt="Login Page" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1658734415/portofolio/telechat/Register_ii6sqv.png" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145281/portofolio/blanja/Login_hban4h.png" alt="Login Page" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145291/portofolio/blanja/Register_jmj451.png" width=100%/></td>
   </tr>
    <tr>
     <td>Login Page</td>
     <td>Register Page</td>
   </tr>
   <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1658734415/portofolio/telechat/riwayat_chat_edr6yp.png" alt="Chat List" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1658734415/portofolio/telechat/modul_untg1m.png" alt="Menu" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145315/portofolio/blanja/Bag2_dkudpl.png" alt="Chat List" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145330/portofolio/blanja/Checkout_hzilov.png" alt="Menu" width=100%/></td>
   </tr>
   <tr>
-    <td>Chat List</td>
-    <td>Menu</td>
-  </tr>
-
-  <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1658734415/portofolio/telechat/profile_ep938t.png" alt="Profile Sender" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1658734415/portofolio/telechat/receiverProfile_xr9xhx.png" alt="Profil Receiver" width=100%/></td>
-  </tr>
-  <tr>
-      <td>Profile Sender</td>
-      <td>Profile Receiver</td>
+    <td>Cart</td>
+    <td>Checkout</td>
   </tr>
 
 </table>
