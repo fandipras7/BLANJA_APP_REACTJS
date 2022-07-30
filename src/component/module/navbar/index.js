@@ -45,7 +45,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
       <div className={`container ${styles.mybar}`}>
         <div
           onClick={() => {
-            navigate("/Home");
+            navigate("/");
           }}
           className={`d-flex ${styles.navbar_brand}`}
         >

@@ -9,7 +9,7 @@ export const loginSeller = (dataForm, navigate) => async (dispatch) => {
     localStorage.setItem("roleId", user.role_id);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: { user } });
     alert("Anda berhasil Login");
-    navigate("/home");
+    navigate("/");
   } catch (error) {
     console.log(error);
     alert("Password dan email salah");
@@ -26,7 +26,7 @@ export const loginUser = (dataForm, navigate) => async (dispatch) => {
     localStorage.setItem("roleId", user.role_id);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: { user } });   
     alert("Anda berhasil Login");
-    navigate("/home");
+    navigate("/");
   } catch (error) {
     console.log(error);
     alert("Password dan email salah");
