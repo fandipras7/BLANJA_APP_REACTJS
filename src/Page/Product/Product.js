@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../component/module/navbar";
 import styles from "./product.module.css";
-import Button from "../../component/base/Button";
+// import Button from "../../component/base/Button";
 // import axios from "axios";
 
 // images
@@ -14,11 +14,12 @@ import Button from "../../component/base/Button";
 // import p5 from "./image/b5.png";
 import star1 from "./image/Star.png";
 import star2 from "./image/Star2.png";
-import minus from "./image/minus.png";
-import plus from "./image/plus.png";
+// import minus from "./image/minus.png";
+// import plus from "./image/plus.png";
 import { getDataByid } from "../../config/redux/action/productAction";
 import { useDispatch, useSelector } from "react-redux";
 import { addMycart } from "../../config/redux/action/bagAction";
+import { formatRp } from "../../helper/addDataRegister";
 // import { addBag } from "../../config/redux/action/bagAction";
 
 const Product = () => {
@@ -122,30 +123,18 @@ const Product = () => {
                     </div>
                     <div className="price">
                       <p>Price</p>
-                      <p className="fw-bold fs-3">{detailProduct?.price}</p>
+                      <p className="fw-bold fs-3">{`Rp. ` + formatRp(detailProduct.price)}</p>
                     </div>
-                    <div className="d-flex flex-column">
+                    {/* <div className="d-flex flex-column">
                       <p className="ms-1">Color</p>
                       <div className="d-flex">
                         <Button backgroundColor="#1a1a1a" width="36px" height="36px" borderRadius="50%"></Button>
                         <Button className="ms-2" backgroundColor="#db3022" width="36px" height="36px" borderRadius="50%"></Button>
                         <Button className="ms-2" backgroundColor="#4290d8" width="36px" height="36px" borderRadius="50%"></Button>
                         <Button className="ms-2" backgroundColor="#42d86c" width="36px" height="36px" borderRadius="50%"></Button>
-                        {/* <div className={`${styles.color_circle} ${styles.black}`}>
-                       <p>.</p>
-                     </div>
-                     <div className={`${styles.color_circle} ${styles.red}`}>
-                       <p>.</p>
-                     </div>
-                     <div className={`${styles.color_circle} ${styles.blue}`}>
-                       <p>.</p>
-                     </div>
-                     <div className={`${styles.color_circle} ${styles.green}`}>
-                       <p>.</p>
-                     </div> */}
                       </div>
-                    </div>
-                    <div className="mt-3 d-flex">
+                    </div> */}
+                    {/* <div className="mt-3 d-flex">
                       <div>
                         <p className="fw-bold">Size</p>
                         <div className="d-flex">
@@ -178,7 +167,7 @@ const Product = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div class="buttons d-flex">
                       <button type="button" class={"btn rounded-pill mt-5 " + styles.chatBtn}>
                         Chat

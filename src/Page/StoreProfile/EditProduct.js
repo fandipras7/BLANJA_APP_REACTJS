@@ -282,7 +282,7 @@ const EditProduct = () => {
                             <li className="list-group-item">
                               <div class="input-group">
                                 {/* <span class="input-group-text">With textarea</span> */}
-                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                                <textarea name="description" onChange={handleChange} value={dataProduct.description} class="form-control" aria-label="With textarea"></textarea>
                               </div>
                               {/* <input type="text" className="form-control" style={{ height: "250px" }} name="description" id="description" onChange={handleChange} /> */}
                             </li>
