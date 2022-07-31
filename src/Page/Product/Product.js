@@ -123,7 +123,7 @@ const Product = () => {
                     </div>
                     <div className="price">
                       <p>Price</p>
-                      <p className="fw-bold fs-3">{`Rp. ` + formatRp(detailProduct.price)}</p>
+                      <p className="fw-bold fs-3">{detailProduct.price && `Rp. ` +  formatRp(detailProduct.price) }</p>
                     </div>
                     {/* <div className="d-flex flex-column">
                       <p className="ms-1">Color</p>
