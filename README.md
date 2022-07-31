@@ -136,6 +136,14 @@ REACT_APP_API_URL = [API_URL]
     <td>Register Page</td>
   </tr>
   <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290494/portofolio/blanja/Home_qdadvk.png" alt="Home" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290492/portofolio/blanja/detailProduct_uqoxnu.png" alt="Detail" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Home</td>
+    <td>Detail Product</td>
+  </tr>
+  <tr>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145315/portofolio/blanja/Bag2_dkudpl.png" alt="Chat List" width=100%></td>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145330/portofolio/blanja/Checkout_hzilov.png" alt="Menu" width=100%/></td>
   </tr>
@@ -143,7 +151,30 @@ REACT_APP_API_URL = [API_URL]
     <td>Cart</td>
     <td>Checkout</td>
   </tr>
-
+  <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290491/portofolio/blanja/transaction_cocqms.png" alt="myorder" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290487/portofolio/blanja/Detail_Order_kk7wdi.png" alt="order detail" width=100%/></td>
+  </tr>
+  <tr>
+    <td>My Order</td>
+    <td>Order Detail</td>
+  </tr>
+  <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290493/portofolio/blanja/profile_aspuwz.png" alt="profile" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290491/portofolio/blanja/myProduct_indnnh.png" alt="myproduct" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Profile</td>
+    <td>My Product</td>
+  </tr>
+  <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290491/portofolio/blanja/addProduct_fbpiyj.png" alt="add product" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290493/portofolio/blanja/editProduct_uuoui8.png" alt="edit product" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Add Product</td>
+    <td>Edit Product</td>
+  </tr>
 </table>
       
 </p>
