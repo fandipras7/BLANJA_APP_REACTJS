@@ -16,23 +16,30 @@ const Bag = () => {
   const token = localStorage.getItem('token')
   // const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState('0')
   let totalHarga = 0
   for (let i = 0; i < mycart.length; i++) {
     // setTotalPrice((current)=> current += mycart[i].price)
     totalHarga += mycart[i].price * mycart[i].qty
   }
 
-  const addStock = async (id) => {
-    try {
-      // const token = localStorage.getItem('token')
-      console.log(token);
-      await axios.put(`${process.env.REACT_APP_API_BLANJA}/cart/add/${id}`
-      )
-      setQty(1)
-    } catch (error) {
-      console.log(error);
-    }
+  const addStock = (id) => {
+    // try {
+    // const token = localStorage.getItem('token')
+    axios.put(`${process.env.REACT_APP_API_BLANJA}/cart/add/${id}`)
+      .then(() => {
+        setQty((cureent) => cureent++)
+        console.log('then jalan');
+        dispatch(getMyCart())
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    // )
+    // setQty(1)
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   const deleteCart = async (id) => {
@@ -54,7 +61,9 @@ const Bag = () => {
     //  console.log(token);
     axios.put(`${process.env.REACT_APP_API_BLANJA}/cart/decrease/${id}`)
       .then(() => {
-        setQty(1)
+        setQty((cureent) => cureent++)
+        console.log('then jalan');
+        dispatch(getMyCart())
       })
       .catch((error) => {
         console.log(error);
@@ -70,6 +79,7 @@ const Bag = () => {
 
   useEffect(() => {
     dispatch(getMyCart());
+    console.log('apakah useEffect jalan');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qty]);
   return (
@@ -161,7 +171,7 @@ const Bag = () => {
                               <img className="mb-2" src="./images/bag/shape.png" alt="btn" />
                             </Button>
                           </td>
-                          <td className={"align-middle fw-bold"}>{`Rp. `+formatRp(item.price * item.qty)}</td>
+                          <td className={"align-middle fw-bold"}>{`Rp. ` + formatRp(item.price * item.qty)}</td>
                           <Button onClick={() => {
                             deleteCart(item.id)
 
@@ -216,7 +226,7 @@ const Bag = () => {
                   <table className="table">
                     <tbody>
                       <td className={"float start " + styles.total_price}>Total Price</td>
-                      <td className="float-end fw-bold">{`Rp. `+formatRp(totalHarga)}</td>
+                      <td className="float-end fw-bold">{`Rp. ` + formatRp(totalHarga)}</td>
                     </tbody>
                   </table>
                 </div>

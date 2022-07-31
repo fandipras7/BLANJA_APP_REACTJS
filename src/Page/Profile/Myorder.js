@@ -42,10 +42,10 @@ const Myorder = () => {
 
     useEffect(() => {
         dispatch(getMyTransaction())
-        setTransaction(myTransaction)
+        // setTransaction(myTransaction)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(transaction);
+    // console.log(transaction);
     return (
         <div>
             <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home="" /*onClickButton={handleSearch} onChange={(e) => setSearch(e.target.value)}*/></Navbar>
@@ -89,7 +89,7 @@ const Myorder = () => {
                                     <Card className={styles.card + " p-4"}>
                                         <h5>All Transaction</h5>
                                     </Card>
-                                    {transaction.map((item) => (
+                                    {myTransaction.map((item) => (
                                         <Card className={styles.card + ` p-1 mt-3`}>
                                             <span>{moment(item.creted_at).format('dddd, MMMM, YYYY')}</span>
                                             <div className="d-flex ps-5">
