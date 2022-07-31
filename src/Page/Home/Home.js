@@ -8,6 +8,7 @@ import { getData } from "../../config/redux/action/productAction";
 import { getCategory } from "../../config/redux/action/categoryAction";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import lohi from '../image/lohi.png'
+import { formatRp } from "../../helper/addDataRegister";
 // import axios from "axios";
 
 const Home = () => {
@@ -29,7 +30,7 @@ const Home = () => {
 
   const [page, setPage] = useState({
     currentPage: 1,
-    limit: 3,
+    limit: 5,
     keyword,
   });
 
@@ -132,14 +133,14 @@ const Home = () => {
                 <p>What are you currently looking for</p>
               </div>
             </div>
-            <div className="row position-relative justify-content-center row-cols-2 row-cols-md-3 row-cols-lg-5">
+            <div className="row justify-content-center row-cols-2 row-cols-md-3 row-cols-lg-5">
               {category.map((item) => (
-                <div className="col">
-                  <div className="card align-items-center bg-danger" style={{ height: "180px" }}>
-                    <div className="card-body d-flex flex-column">
-                      {/* <img className="img-fluid" src="https://www.unukaltim.ac.id/wp-content/uploads/2019/12/697057-facebook-512.png" alt="" /> */}
-                      <p className={styles.text_category}>{item.name}</p>
+                <div className={"col ms-2 " + styles.card_category}>
+                  <div className="card align-items-center position-relative" style={{ height: "180px" }}>
+                    <div className="card-body d-flex flex-column" style={{height:"70px"}}>
+                      <img className={styles.image_category} src={item.photo && item.photo} alt="" />
                     </div>
+                    <p className={styles.text_category}>{item.name}</p>
                   </div>
                 </div>
               ))}
@@ -160,11 +161,11 @@ const Home = () => {
                 <p>What are you looking for</p>
               </div>
             </div>
-            <div className="row row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xg-6">
+            <div className="row justify-content-center row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xg-6">
               {/* { isGeting ? <p>{product.name}</p> : <p>produk kosong</p>} */}
               {product.map((item) => (
                 <div className="col mb-3">
-                  <Card className="card" height="278px" key={item.id}>
+                  <Card className={styles.card_product} height="300px" key={item.id}>
                     <div className="text-center">
                       <img style={{ height: "136px" }} src={item.photo} class="img-fluid" alt="produk" />
                     </div>
@@ -172,7 +173,7 @@ const Home = () => {
                       <p id={styles["name"]} onClick={() => moveToDetailProduct(item.id)}>
                         {item.name}
                       </p>
-                      <p id={styles["price"]}>{item.price}</p>
+                      <p id={styles["price"]}>{`Rp. ` + formatRp(item.price)}</p>
                       <p id={styles["seller"]}>{item.brand}</p>
                       <div class="rating">
                         <img src="./images/home/Star/star.png" alt="" />

@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user)
+  const [avaPreview, setAvaPreview] = useState(user.photo)
+  const [avatar, setAvatar] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate(0)
   console.log('ini punya user');
@@ -30,6 +32,12 @@ const Profile = () => {
     })
   }
 
+  const changePhoto = (e) => {
+    const file = e.target.files[0]
+    setAvatar(file)
+    setAvaPreview(URL.createObjectURL(file))
+  }
+
   const [show, setShow] = useState('')
 
   const onClickEdit = () => {
@@ -49,7 +57,14 @@ const Profile = () => {
   }
 
   const onSave = () => {
-    dispatch(updateProfile(dataUser))
+    const dataForm = new FormData()
+    dataForm.append('name', dataUser.name)
+    dataForm.append('email', dataUser.email)
+    dataForm.append('phonenumber', dataUser.phonenumber)
+    dataForm.append('gender', dataUser.gender)
+    dataForm.append('birthdate', dataUser.birthdate)
+    dataForm.append('photo', avatar)
+    dispatch(updateProfile(dataForm))
     const inputs = document.getElementsByClassName('form-control')
     const checks = document.getElementsByClassName('form-check-input')
     // inputs.disabled = false
@@ -85,6 +100,7 @@ const Profile = () => {
       ...dataUser
     })
     setShow('')
+    setAvaPreview(user.photo)
   }
 
   console.log(dataUser);
@@ -97,7 +113,7 @@ const Profile = () => {
             <div className={`${styles.sidebar} col-12 col-lg-3 text-center`}>
               <div className={`${styles.menuHeader} d-flex justify-content-center mt-5`}>
                 <div className={styles.img_profile}>
-                  <img src="./images/profile/ava1.png" className="img-fluid" alt="" />
+                  <img src={user.photo ? avaPreview : "./images/profile/ava1.png"} className="img-fluid" alt="" />
                 </div>
                 <div>
                   <p className="ms-4">{user.name}</p>
@@ -218,12 +234,15 @@ const Profile = () => {
                       </div>
                       <div className="col-sm-3 border-start border-success text-center h-50">
                         <div>
-                          <img src="./images/profile/ava1.png" className="rounded-circle img-fluid" alt="" />
+                          {/* <img src="./images/profile/ava1.png" className="rounded-circle img-fluid" alt="" /> */}
+                          <img src={avaPreview ? avaPreview : "./images/profile/ava1.png"} className="rounded-circle img-fluid" alt="" />
                         </div>
                         <div class="select-avatar mt-3">
-                          <Button className="" color="gray" backgroundColor="white" borderRadius="25px">
+                          {/* <Button className="" color="gray" backgroundColor="white" borderRadius="25px">
                             Select Image
-                          </Button>
+                          </Button> */}
+                          <label htmlFor="ava">Select Image</label>
+                          <input onChange={changePhoto} id="ava" hidden type="file" className="form-control btn" accept="image/"  />
                         </div>
                       </div>
                     </div>
