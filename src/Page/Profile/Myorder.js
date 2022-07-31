@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../component/module/navbar";
 import styles from "./profile.module.css";
 import Button from "../../component/base/Button";
@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 const Myorder = () => {
     const { user } = useSelector((state) => state.user)
     const { myTransaction } = useSelector((state) => state.order)
-    const [transaction, setTransaction] = useState([])
+    // const [transaction, setTransaction] = useState([])
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
