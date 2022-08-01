@@ -13,7 +13,7 @@
     Send your Message to your friend.
     <br />
     <br />
-    <a href="https://62df7f029f076737c0eae341--soft-dango-c0db11.netlify.app/home">View Demo</a>
+    <a href="https://master--incomparable-pegasus-76411e.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/fandipras7/BLANJA_APP_REACTJS/issues">Report Bug</a>
     ·
@@ -129,7 +129,7 @@ REACT_APP_API_URL = [API_URL]
  
   <tr>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145281/portofolio/blanja/Login_hban4h.png" alt="Login Page" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145291/portofolio/blanja/Register_jmj451.png" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659340375/portofolio/blanja/Register_ueumau.png" width=100%/></td>
   </tr>
    <tr>
     <td>Login Page</td>
@@ -144,8 +144,8 @@ REACT_APP_API_URL = [API_URL]
     <td>Detail Product</td>
   </tr>
   <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659341139/portofolio/blanja/bag_dfni5k.png" alt="Chat List" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659341728/portofolio/blanja/Checkout_mhogzl.png" alt="Menu" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659341139/portofolio/blanja/bag_dfni5k.png" alt="cart" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659341728/portofolio/blanja/Checkout_mhogzl.png" alt="checkout" width=100%/></td>
   </tr>
   <tr>
     <td>Cart</td>
@@ -162,34 +162,6 @@ REACT_APP_API_URL = [API_URL]
   <tr>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290493/portofolio/blanja/profile_aspuwz.png" alt="profile" width=100%></td>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659347245/portofolio/blanja/myProduct_avhe3s.png" alt="myproduct" width=100%/></td>
-  </tr>
-  <tr>
-    <td>Profile</td>
-    <td>My Product</td>
-  </tr>
-  <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290491/portofolio/blanja/addProduct_fbpiyj.png" alt="add product" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290493/portofolio/blanja/editProduct_uuoui8.png" alt="edit product" width=100%/></td>
-  </tr>
-  <tr>
-    <td>Add Product</td>
-    <td>Edit Product</td>
-  </tr>
-  <tr>
-    <td>Cart</td>
-    <td>Checkout</td>
-  </tr>
-  <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290491/portofolio/blanja/transaction_cocqms.png" alt="myorder" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290487/portofolio/blanja/Detail_Order_kk7wdi.png" alt="order detail" width=100%/></td>
-  </tr>
-  <tr>
-    <td>My Order</td>
-    <td>Order Detail</td>
-  </tr>
-  <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290493/portofolio/blanja/profile_aspuwz.png" alt="profile" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290491/portofolio/blanja/myProduct_indnnh.png" alt="myproduct" width=100%/></td>
   </tr>
   <tr>
     <td>Profile</td>
@@ -228,7 +200,7 @@ Contributions are what make the open source community such an amazing place to b
 
 :rocket: [`Web Service`](https://tokoku2.herokuapp.com/)
 
-:rocket: [`Demo Blanja E-Commerce`](https://62df7f029f076737c0eae341--soft-dango-c0db11.netlify.app/home)
+:rocket: [`Demo Blanja E-Commerce`](https://master--incomparable-pegasus-76411e.netlify.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
