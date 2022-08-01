@@ -136,8 +136,44 @@ REACT_APP_API_URL = [API_URL]
     <td>Register Page</td>
   </tr>
   <tr>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145315/portofolio/blanja/Bag2_dkudpl.png" alt="Chat List" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659145330/portofolio/blanja/Checkout_hzilov.png" alt="Menu" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659340379/portofolio/blanja/Home_ukrfln.png" alt="Home" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659340373/portofolio/blanja/detailProduct_sxhljn.png" alt="Detail" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Home</td>
+    <td>Detail Product</td>
+  </tr>
+  <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659341139/portofolio/blanja/bag_dfni5k.png" alt="Chat List" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659341728/portofolio/blanja/Checkout_mhogzl.png" alt="Menu" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Cart</td>
+    <td>Checkout</td>
+  </tr>
+  <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659340958/portofolio/blanja/transaction_xroes4.png" alt="myorder" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659340372/portofolio/blanja/Detail_Order_qdbham.png" alt="order detail" width=100%/></td>
+  </tr>
+  <tr>
+    <td>My Order</td>
+    <td>Order Detail</td>
+  </tr>
+  <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290493/portofolio/blanja/profile_aspuwz.png" alt="profile" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659347245/portofolio/blanja/myProduct_avhe3s.png" alt="myproduct" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Profile</td>
+    <td>My Product</td>
+  </tr>
+  <tr>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290491/portofolio/blanja/addProduct_fbpiyj.png" alt="add product" width=100%></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659290493/portofolio/blanja/editProduct_uuoui8.png" alt="edit product" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Add Product</td>
+    <td>Edit Product</td>
   </tr>
   <tr>
     <td>Cart</td>

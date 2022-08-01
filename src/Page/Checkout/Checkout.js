@@ -71,7 +71,7 @@ const Checkout = () => {
             <div className="col-lg-8">
               <Card className={`${styles.card} p-5`}>
                 <p className="fw-bold">{user.name}</p>
-                <p className={styles.address}>Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok c 16] Sokaraja, Kab. Banyumas, 53181</p>
+                <p className={styles.address}>Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181 [Blanja Note: blok c 16] Sokaraja, Kab. Banyumas, 53181</p>
                 <Button color="gray" backgroundColor="white" borderRadius="24px" className="p-2">
                   Choose another Address
                 </Button>

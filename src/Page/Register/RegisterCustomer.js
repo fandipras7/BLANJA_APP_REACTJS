@@ -46,8 +46,8 @@ const RegisterCustomer = () => {
             </div>
             <p className="text-end">Forgot password?</p>
             <form onSubmit={handleRegister}>
-              <Input name="name" value={formRegister.name} onChange={handleChange} type="text" classWrapName="form-outline mb-2" id="name" className="form-control form-control-lg" placeholder="name"></Input>
-              <Input name="email" value={formRegister.email} onChange={handleChange} classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="email"></Input>
+              <Input name="name" value={formRegister.name} onChange={handleChange} type="text" classWrapName="form-outline mb-2" id="name" className="form-control form-control-lg" placeholder="Name"></Input>
+              <Input name="email" value={formRegister.email} onChange={handleChange} classWrapName="form-outline mb-2" type="email" id="email" className="form-control form-control-lg" placeholder="Email"></Input>
               {/* <Input name="phoneNumber" value={formRegister.phoneNumber} onChange={handleChange} classWrapName="form-outline mb-2" type="text" id="phone" className="form-control form-control-lg" placeholder="Phone Number"></Input>
               <Input name="storeName" value={formRegister.storeName} onChange={handleChange} classWrapName="form-outline mb-2" type="text" id="store" className="form-control form-control-lg" placeholder="Store Name"></Input> */}
               <Input name="password" value={formRegister.password} onChange={handleChange} classWrapName="form-outline mb-4" type="password" id="password" className="form-control form-control-lg" placeholder="Password"></Input>

@@ -157,7 +157,7 @@ const Home = () => {
           <div className="container mt-5">
             <div className="row text-start mb-3">
               <div className="col">
-                <p className="fw-bolder fs-4">Produk</p>
+                <p className="fw-bolder fs-4">Product</p>
                 <p>What are you looking for</p>
               </div>
             </div>

@@ -46,10 +46,10 @@ const Product = () => {
   const handleAddBag = async (detailProductId, navigate) => {
     const data = {
       productId: detailProductId,
-      qty:1
-    }
+      qty: 1,
+    };
     // dispatch()
-    addMycart(data, navigate)
+    addMycart(data, navigate);
   };
 
   console.log(isLoading);
@@ -64,10 +64,11 @@ const Product = () => {
       {/* <Navbar className="navbar navbar-expand-lg navbar-light fixed-top" home={true}></Navbar> */}
       <Navbar className="navbar navbar-expand-lg navbar-light fixed-top"></Navbar>
       <main className="mb-5">
-        {isLoading ? (<div className="vh-100 text-center">
-          <h3>Geting...</h3>
-        </div>) : (
-
+        {isLoading ? (
+          <div className="vh-100 text-center">
+            <h3>Geting...</h3>
+          </div>
+        ) : (
           <div>
             <section id="photo-product">
               <div className="container">
@@ -123,7 +124,7 @@ const Product = () => {
                     </div>
                     <div className="price">
                       <p>Price</p>
-                      <p className="fw-bold fs-3">{detailProduct.price && `Rp. ` +  formatRp(detailProduct.price) }</p>
+                      <p className="fw-bold fs-3">{detailProduct.price && `Rp. ` + formatRp(detailProduct.price)}</p>
                     </div>
                     {/* <div className="d-flex flex-column">
                       <p className="ms-1">Color</p>
@@ -200,9 +201,7 @@ const Product = () => {
                 </div>
                 <div>
                   <p class="fw-bold fs-4">Description</p>
-                  <p>
-                    {detailProduct?.description}
-                  </p>
+                  {detailProduct.description && detailProduct.description.split(",").map((item) => <p key={item.id}>- {item}</p>)}
                 </div>
               </div>
             </section>
@@ -412,7 +411,6 @@ const Product = () => {
            </div>
          </aside> */}
           </div>
-
         )}
       </main>
     </Fragment>

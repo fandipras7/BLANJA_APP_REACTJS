@@ -91,7 +91,7 @@ const Myorder = () => {
                                     </Card>
                                     {myTransaction.map((item) => (
                                         <Card className={styles.card + ` p-1 mt-3`}>
-                                            <span>{moment(item.creted_at).format('dddd, MMMM, YYYY')}</span>
+                                            <span>{moment(item.creted_at).format('dddd, DD MMMM YYYY')}</span>
                                             <div className="d-flex ps-5">
                                                 <div className="mt-1 me-5">
                                                     <p>Payment Method: <br />
