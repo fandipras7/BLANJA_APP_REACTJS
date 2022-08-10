@@ -5,6 +5,7 @@ import styles from "./checkout.module.css";
 import Button from "../../component/base/Button";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
@@ -41,10 +42,17 @@ const Checkout = () => {
           Authorization: `Bearer ${token}`
         }
       })
-      alert('Order Success')
+      Swal.fire({
+        icon: "success",
+        text: "Order Success"
+      })
       navigate('/profile/transaction')
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        text: "Order Failed"
+      })
     }
   }
 

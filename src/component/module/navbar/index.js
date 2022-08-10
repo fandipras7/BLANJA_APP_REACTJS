@@ -53,7 +53,7 @@ const Navbar = ({ className, onChange, onClickButton }) => {
           <h5 className="mt-2">Blanja</h5>
         </div>
         <form className={"d-flex ms-auto " + styles.searchAndSort}>
-          <Input className={`${styles.form_control} me-2`} border="1px solid grey" type="search" onChange={onChange} placeholder="Search"></Input>
+          <Input className={`${styles.form_control} me-2 p-3`} border="1px solid grey" type="search" onChange={onChange} placeholder="Search"></Input>
           <Button className={styles.btnSearch} onClick={onClickButton} type="button" border="none" backgroundColor="white">
             <img src={searchImg} alt="" />
           </Button>

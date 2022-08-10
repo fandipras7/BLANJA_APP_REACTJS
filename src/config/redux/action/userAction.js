@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 export const loginSeller = (dataForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "USER_LOGIN_PENDING" });
@@ -8,11 +9,19 @@ export const loginSeller = (dataForm, navigate) => async (dispatch) => {
     localStorage.setItem("refreshToken", user.refreshToken);
     localStorage.setItem("roleId", user.role_id);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: { user } });
-    alert("Anda berhasil Login");
+    Swal.fire({
+      title: `Welcome ${user.name}`,
+      text: `Login Success`,
+      icon: `Success`
+    })
     navigate("/");
   } catch (error) {
     console.log(error);
-    alert("Password dan email salah");
+    Swal.fire({
+      title: `Error`,
+      text: `Please enter the correct password and email`,
+      icon: `error`
+    })
   }
 };
 
@@ -25,11 +34,19 @@ export const loginUser = (dataForm, navigate) => async (dispatch) => {
     localStorage.setItem("refreshToken", user.refreshToken);
     localStorage.setItem("roleId", user.role_id);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: { user } });   
-    alert("Anda berhasil Login");
+    Swal.fire({
+      title: `Welcome ${user.name}`,
+      text: `Login Success`,
+      icon: `success`
+    })
     navigate("/");
   } catch (error) {
     console.log(error);
-    alert("Password dan email salah");
+    Swal.fire({
+      title: `Error`,
+      text: `Please enter the correct password and email`,
+      icon: `error`
+    })
   }
 };
 
@@ -45,9 +62,15 @@ export const updateProfile = (data) => async (dispatch) => {
     const profile = result.data.data
     console.log(profile);
     dispatch({ type: 'EDIT_PROFILE', payload: { profile }})
-    alert('EDIT PROFILE SUCCESS')
+    Swal.fire({
+      icon: "success",
+      text: "Your profile has been updated"
+    })
   } catch (error) {
     console.log(error);
-    alert('EDIT PROFILE FAILED')
+    Swal.fire({
+      icon: "error",
+      text: "Updating failed"
+    })
   }
 }

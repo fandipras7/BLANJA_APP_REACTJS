@@ -1,24 +1,41 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const sellerRegister = async (dataform, navigate) => {
   try {
-    await axios.post("http://localhost:4000/v1/seller/register", dataform);
-    alert("Selamat Pendaftaran berhasil");
+    await axios.post(`${process.env.REACT_APP_API_BLANJA }/seller/register`, dataform);
+    Swal.fire({
+      // title: `Register Success`,
+      text: `Register Success`,
+      icon: `success`
+    })
     navigate("/Login");
   } catch (error) {
     console.log(error);
-    alert("Email anda sudah terdaftar");
+    Swal.fire({
+      // title: `Email Has`,
+      text: `your email is already registered`,
+      icon: `error`
+    })
   }
 };
 
 export const userRegister = async (dataform, navigate) => {
   try {
-    await axios.post("http://localhost:4000/v1/users/register", dataform);
-    alert("Selamat Pendaftaran berhasil");
+    await axios.post(`${process.env.REACT_APP_API_BLANJA }/users/register`, dataform);
+    Swal.fire({
+      // title: `Register Success`,
+      text: `Register Success`,
+      icon: `success`
+    })
     navigate("/LoginCustomer");
   } catch (error) {
     console.log(error);
-    alert("Email anda sudah terdaftar");
+    Swal.fire({
+      // title: `Email Has`,
+      text: `your email is already registered`,
+      icon: `error`
+    })
   }
 };
 
